@@ -11,7 +11,7 @@ def dashboard():
 # Profile
 @bp.route("/profile/")
 def profile():
-    return render_template("modules/profile.html")
+    return render_template("modules/users/profile.html")
 
 # Products
 @bp.route("/products/")

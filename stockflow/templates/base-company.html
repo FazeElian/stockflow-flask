@@ -21,13 +21,10 @@
                 <img src="{{ url_for('static', filename='img/logo.png') }}" alt="">
                 Stockflow
             </a>
-            <div class="bg-black item-company-btns color-white">
-                <a class="btn-company btn-login-company " href="{{ url_for('auth.login') }}">
-                    Iniciar Sesión
-                </a>
-                <a class="btn-company btn-register-company" href="{{ url_for('auth.register') }}">
-                    Registrarse
-                </a>
+            <div class="bg-black item-company color-white">
+                {% block content %}
+                    
+                {% endblock %}
             </div>
         </div>
     </div>

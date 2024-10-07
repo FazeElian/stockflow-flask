@@ -7,5 +7,11 @@
 </head>
 <body>
     <h1>Página Principal</h1>
+    <br>
+    <li><a href="{{ url_for('admin.dashboard') }}">Dashboard</a></li>
+    <br>
+    <li><a href="{{ url_for('auth.login') }}">Iniciar Sesión</a></li>
+    <li><a href="{{ url_for('auth.register') }}">Registrarse</a></li>
+    <li><a href="{{ url_for('auth.forgot_password') }}">Recuperar contraseña</a></li>
 </body>
 </html>

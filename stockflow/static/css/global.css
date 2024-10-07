@@ -111,6 +111,11 @@ a {
     }
 
 /* Font colors */
+    /* Black */
+    .color-black {
+        color: #1C1C26;
+    }
+
     /* White */
     .color-white {
         color: #FFF;

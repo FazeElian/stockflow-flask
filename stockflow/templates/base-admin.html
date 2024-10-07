@@ -15,7 +15,12 @@
     <!-- Side bar -->
     <aside class="side-bar inter bg-black br-gray-1">
         <section class="side-bar-main">
-            <h1 class="inter"><a href="{{ url_for('admin.dashboard') }}" class="color-white"><b>Stockflow</b></a></h1>
+            <h1 class="inter">
+                <a href="{{ url_for('admin.dashboard') }}" class="color-white">
+                    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="">
+                    Stockflow
+                </a>
+            </h1>
             <br>
             <div class="side-bar-divider" />
 

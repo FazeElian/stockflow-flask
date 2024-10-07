@@ -138,5 +138,9 @@
     <main class="page-content bg-black">
         {% block content %}{% endblock %}
     </main>
+
+    {% for message in get_flashed_messages() %}
+        <script> alert('{{ message }}'); </script>
+    {% endfor %}
 </body>
 </html>

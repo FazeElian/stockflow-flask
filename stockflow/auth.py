@@ -19,7 +19,25 @@ from stockflow import db
 
 from . import models
 
+# Session protected routes
+import functools
+
+def login_required(view):
+    @functools.wraps(view)
+
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            message = "Debes iniciar sesión"
+            flash(message)
+
+            # Redirection
+            return redirect(url_for("auth.login"))
+        
+        return view(**kwargs)
+    return wrapped_view
+
 bp = Blueprint("auth", __name__, url_prefix="/auth")
+
 # Routes
 # Register
 @bp.route("/register/", methods = ("GET", "POST"))

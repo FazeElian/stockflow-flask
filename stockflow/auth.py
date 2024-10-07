@@ -31,6 +31,9 @@ def register():
         
         email = User.query.filter_by(email = email).first() # Get the first value
         username = User.query.filter_by(username = username).first() # Get the first value
+
+        error = None
+
         # If already exists a user with the email or username
         if email == None:
             db.session.add(user)
@@ -41,6 +44,10 @@ def register():
             db.session.add(user)
             db.session.commit()
             return redirect(url_for("auth.login"))
+        else: 
+            error = f"El usuario {username} ya está registrado"
+
+        flash(error)
         
     return render_template("modules/users/register.html")
 

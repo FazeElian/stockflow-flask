@@ -1,0 +1,33 @@
+.th-no-prods,
+.td-no-prods {
+    width: 8%;
+}
+
+.th-code-prods,
+.td-code-prods {
+    width: 12%;
+}
+
+.th-name-prods,
+.td-name-prods {
+    width: 30%;
+}
+
+.th-category-prods,
+.td-category-prods {
+    width: 18%;
+}
+
+.th-price-prods,
+.td-price-prods {
+    width: 14%;
+}
+
+.th-options-prods,
+.td-options-prods {
+    width: 18%;
+}
+
+    .td-options-prods {
+        gap: 1.5rem;
+    }

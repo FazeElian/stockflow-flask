@@ -81,6 +81,18 @@ def login():
 
     return render_template("modules/users/login.html")
 
+@bp.before_app_request # Execute the next function in every request, every page
+def load_logged_in_user():
+    # Session user id
+    user_id = session.get("user_id")
+    
+    # Save the object with a null value
+    if user_id is None:
+        g.user = None
+    # Return a user after a query
+    else:
+        g.user = User.query.get_or_404(user_id)
+
 # Forgot Password
 @bp.route("/forgot-password/")
 def forgot_password():

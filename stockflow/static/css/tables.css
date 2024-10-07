@@ -36,6 +36,10 @@
         border-bottom: 1px solid #87888C;
     }
 
+        .tbody:hover {
+            background-color: #1C1C26;
+        }
+
         .td {
             display: flex;
             width: auto;

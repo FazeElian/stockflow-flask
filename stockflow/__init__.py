@@ -1,4 +1,8 @@
 from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
+
+# Database
+db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
@@ -6,8 +10,12 @@ def create_app():
     # Config
     app.config.from_mapping (
         DEBUG = True,
-        SECRET_KEY = "dev"
+        SECRET_KEY = "dev",
+        SQLALCHEMY_DATABASE_URI="sqlite:///easyfinance.db"
     )
+
+    # Initialize the database connection
+    db.init_app(app)
 
     # Index
     @app.route("/")
@@ -21,5 +29,9 @@ def create_app():
     # Auth blueprint
     from . import auth
     app.register_blueprint(auth.bp)
+
+    # Create database tables
+    with app.app_context():
+        db.create_all()
 
     return app

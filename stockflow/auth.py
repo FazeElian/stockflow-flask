@@ -93,6 +93,12 @@ def load_logged_in_user():
     else:
         g.user = User.query.get_or_404(user_id)
 
+# Log out
+@bp.route("/logout/")
+def logout():
+    session.clear()
+    return redirect(url_for("index"))
+
 # Forgot Password
 @bp.route("/forgot-password/")
 def forgot_password():

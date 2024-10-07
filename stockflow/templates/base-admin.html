@@ -29,7 +29,10 @@
 
             <!-- Nav bar -->
             <nav class="side-nav-bar">
-                <a href="{{ url_for('admin.dashboard') }}" class="item-side-nav-bar--active inter">
+                <a 
+                    href="{{ url_for('admin.dashboard') }}"
+                    class="item-side-nav-bar inter {% if request.endpoint == 'admin.dashboard' %}item-side-nav-bar--active{% endif %}"
+                >
                     <svg 
                         width="22" 
                         height="22"
@@ -45,7 +48,10 @@
                     </svg>            
                     Dashboard
                 </a>
-                <a href="{{ url_for('admin.profile') }}" class="item-side-nav-bar inter">
+                <a 
+                    href="{{ url_for('admin.profile') }}"
+                    class="item-side-nav-bar inter {% if request.endpoint == 'admin.profile' %}item-side-nav-bar--active{% endif %}"
+                >
                     <svg 
                         width="22" 
                         height="22" 
@@ -60,7 +66,10 @@
                     </svg>
                     Perfil
                 </a>
-                <a href="{{ url_for('admin.products') }}" class="item-side-nav-bar inter">
+                <a 
+                    href="{{ url_for('admin.products') }}"
+                    class="item-side-nav-bar inter {% if request.endpoint == 'admin.products' %}item-side-nav-bar--active{% endif %}"
+                >
                     <svg 
                         width="22" 
                         height="22"
@@ -69,7 +78,7 @@
                         xmlns="http://www.w3.org/2000/svg"
                     >
                         <g style="mix-blend-mode:darken">
-                            <rect y="0.538635" width="14" height="14.3162" fill="currentcolor"/>
+                            <rect y="0.538635" width="14" height="14.3162" fill="none"/>
                         </g>
                         <path d="M1.54985 6.37169C1.57717 6.06418 1.73174 5.77725 1.98276 5.56804C2.23378 5.35883 2.56284 5.24269 2.9044 5.24275H11.0956C11.4372 5.24269 11.7662 5.35883 12.0172 5.56804C12.2683 5.77725 12.4228 6.06418 12.4502 6.37169L12.9956 12.5072C13.0106 12.676 12.9868 12.8459 12.9256 13.006C12.8643 13.1661 12.7671 13.313 12.6399 13.4375C12.5127 13.562 12.3584 13.6613 12.1866 13.7293C12.0148 13.7973 11.8293 13.8324 11.6418 13.8325H2.35823C2.17069 13.8324 1.98519 13.7973 1.81341 13.7293C1.64163 13.6613 1.48729 13.562 1.36011 13.4375C1.23293 13.313 1.13567 13.1661 1.07444 13.006C1.01321 12.8459 0.989351 12.676 1.00435 12.5072L1.54985 6.37169V6.37169Z"
                             stroke="currentcolor"
@@ -85,7 +94,10 @@
                     </svg>
                     Productos
                 </a>
-                <a href="{{ url_for('admin.sales') }}" class="item-side-nav-bar inter">
+                <a 
+                    href="{{ url_for('admin.sales') }}"
+                    class="item-side-nav-bar inter {% if request.endpoint == 'admin.sales' %}item-side-nav-bar--active{% endif %}"
+                >
                     <svg
                         width="22"
                         height="22"
@@ -94,7 +106,7 @@
                         xmlns="http://www.w3.org/2000/svg"
                     >
                         <g style="mix-blend-mode:darken">
-                            <rect y="0.943329" width="14" height="14.3162" fill="currentcolor"/>
+                            <rect y="0.943329" width="14" height="14.3162" fill="none"/>
                         </g>
                         <path 
                             fill-rule="evenodd"

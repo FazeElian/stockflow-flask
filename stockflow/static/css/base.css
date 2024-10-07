@@ -70,10 +70,13 @@
             color: #87888C;
         }
 
-            .item-side-nav-bar--active,
-            .item-side-nav-bar--active svg {
+            .item-side-nav-bar--active{
                 color: black;
                 background-color: #A7D9D0;
+            }
+
+            .item-side-nav-bar--active svg {
+                color: black !important;
             }
 
             .item-side-nav-bar svg,
@@ -84,6 +87,9 @@
 
         .item-side-nav-bar svg {
             color: #87888C !important;
+        }
+        .item-side-nav-bar--active svg {
+            color: black !important;
         }
 
         .item-side-nav-bar:hover {

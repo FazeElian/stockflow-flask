@@ -4,7 +4,9 @@ from flask import (
     url_for, 
     request,
     redirect,
-    flash
+    flash,
+    session, # Save the user who start a session
+    g # Save any value (for example: cookies)
 )
 
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -52,8 +54,31 @@ def register():
     return render_template("modules/users/register.html")
 
 # Login
-@bp.route("/login/")
+@bp.route("/login/", methods = ("GET", "POST"))
 def login():
+    if request.method == "POST":
+        # Get form input values
+        username = request.form["username"]
+        password = request.form["password"]
+
+        error = None
+
+        user = User.query.filter_by(username = username).first()
+
+        if user == None:
+            error = "Nombre de usuario incorrecto"
+        elif not check_password_hash(user.password, password):
+            error = "Contraseña incorrecta"
+
+        # Log in
+        if error == None:
+            session.clear()
+            # Key
+            session["user_id"] = user.id
+            return redirect(url_for("admin.dashboard"))
+        
+        flash(error)
+
     return render_template("modules/users/login.html")
 
 # Forgot Password

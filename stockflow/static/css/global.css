@@ -36,6 +36,18 @@ a {
         border-radius: 10px;
     }
         
+/* Absolute center */
+.absolute-center {
+    display: flex;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
 /* Background colors */
     /* Black */
     .bg-black {
@@ -70,6 +82,31 @@ a {
     /* Pink */
     .bg-pink {
         background-color: #F2C8ED;
+    }
+
+    /* Background animated */
+    .bg-animated {
+        background: radial-gradient(
+            circle, 
+            #1C1C26 0%,
+            #363740 20%,
+            #3E3E54 35%,
+            #1C1C26 45%,
+            #363740 70%,
+            #3E3E54 85%,
+            #1C1C26 100%
+        ); 
+        background-size: 10000px 10000px;
+        animation: bg 20s linear infinite;
+    }
+    
+    @keyframes bg {
+        0% {
+            background-position: 0 0;
+        }
+        100% {
+            background-position: 10000px 10000px;
+        }
     }
 
 /* Font colors */

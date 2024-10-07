@@ -1,17 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Principal</title>
+    <title>Stockflow | Página Principal</title>
+
+    <!-- Global Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+
+    <!-- Styles for this view -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 </head>
-<body>
-    <h1>Página Principal</h1>
-    <br>
-    <li><a href="{{ url_for('admin.dashboard') }}">Dashboard</a></li>
-    <br>
-    <li><a href="{{ url_for('auth.login') }}">Iniciar Sesión</a></li>
-    <li><a href="{{ url_for('auth.register') }}">Registrarse</a></li>
-    <li><a href="{{ url_for('auth.forgot_password') }}">Recuperar contraseña</a></li>
+<body class="inter bg-animated">
+    <div class="absolute-center">
+        <div class="company">
+            <div class="bg-black item-company company-img color-white">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="">
+                Stockflow
+            </div>
+            <div class="bg-black item-company-btns color-white">
+                <a class="btn-company btn-login-company " href="{{ url_for('auth.login') }}">
+                    Iniciar Sesión
+                </a>
+                <a class="btn-company btn-register-company" href="{{ url_for('auth.register') }}">
+                    Registrarse
+                </a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

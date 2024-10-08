@@ -1,0 +1,29 @@
+/* Table */
+.th-no-cat,
+.td-no-cat {
+    width: 8%;
+}
+
+.th-name-cat,
+.td-name-cat {
+    width: 30%;
+}
+
+.th-description-cat,
+.td-description-cat {
+    width: 18%;
+}
+
+.th-options-cat,
+.td-options-cat {
+    width: 18%;
+}
+
+    .td-options-cat {
+        gap: 1.5rem;
+    }
+
+    .td-options-cat a:hover {
+        opacity: .6;
+        transition: .3s ease all;
+    }

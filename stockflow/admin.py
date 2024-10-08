@@ -44,13 +44,27 @@ def new_product():
     return render_template("modules/products/new.html")
 
 # Products Categories
-@bp.route("/products/categories/")
+@bp.route("/products/categories/", methods = ("GET", "POST"))
 @login_required
 def categories():
-    # Database query
-    categories = Category.query.all()
+    query = ""
+    categories = []
 
-    return render_template("modules/products/categories/index.html", categories = categories)
+    if request.method == "POST":
+        query = request.form.get("searchCategorie", "")
+
+        # Filter the categories when the user put a value on the search bar input
+        categories = Category.query.filter(
+            (
+                Category.name.ilike(f"%{query}%") |  # Searching by name
+                Category.description.ilike(f"%{query}%")  # Searching by description
+            )
+        ).all()
+    else:
+        # Load all the categories where the user is not searching
+        categories = Category.query.all()
+
+    return render_template("modules/products/categories/index.html", categories = categories, query=query)
 
 # New category
 @bp.route("/products/categories/new/", methods = ("GET", "POST"))
@@ -104,7 +118,7 @@ def delete_category(id):
 
     # Redirection
     return redirect(url_for("admin.categories"))
-    
+
 # Sales
 @bp.route("/sales/")
 @login_required

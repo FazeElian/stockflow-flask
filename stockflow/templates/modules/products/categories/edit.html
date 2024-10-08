@@ -1,0 +1,43 @@
+{% extends 'base-admin.html' %}
+{% block title %}Editar Categoría{% endblock %}
+{% block content %}
+    <div class="content-group inter bg-black-light">
+        <h2 class="color-white inter">Editar Categoría</h2>
+    </div>
+    <form action="" method="post" class="form inter form-prods">
+        <div class="content-group bg-black-light form-content">
+            <h1>Información de Categoría: </h1>
+            <div class="form-group" style="margin-top: 0;">
+                <label for="name">Nombre:</label>
+                <input 
+                    type="text"
+                    class="inter color-white"
+                    name="name"
+                    id="name"
+                    placeholder="Ingresa aquí nombre de categoría"
+                    value="{{ category.name }}"
+                    required
+                />
+            </div>
+            <div class="form-group">
+                <label for="name">Descripción:</label>
+                <input
+                    class="inter color-white"
+                    name="description"
+                    id="description"
+                    value="{{ category.description }}"
+                    placeholder="Describe la categoría aquí"
+                />
+            </div>
+        </div>
+        <div class="btns-form inter">
+            <a href="{{ url_for('admin.categories') }}" class="btn-form color-white btn-cancel">
+                Cancelar
+            </a>
+            <button class="btn-form color-black btn-submit bg-turquese-light-blue inter" type="submit">
+                <img src="{{ url_for('static', filename='img/icons/add-product.png') }}" alt="">
+                Actualizar Categoría
+            </button>
+        </div>
+    </form>
+{% endblock %}

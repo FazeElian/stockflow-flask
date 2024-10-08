@@ -70,6 +70,29 @@ def new_category():
 
     return render_template("modules/products/categories/new.html")
 
+# Get category by id
+def get_category(id):
+    category = Category.query.get_or_404(id)
+    return category
+
+# Update category
+@bp.route("/products/categories/edit/<int:id>", methods = ("GET", "POST"))
+@login_required
+def update_category(id):
+    # Search on db category id
+    category = get_category(id)
+
+    if request.method == "POST":
+        category.name = request.form["name"]
+        category.description = request.form["description"]
+
+        db.session.commit()
+
+        # Redirection
+        return redirect(url_for("admin.categories"))
+
+    return render_template("modules/products/categories/edit.html", category = category)
+
 # Sales
 @bp.route("/sales/")
 @login_required

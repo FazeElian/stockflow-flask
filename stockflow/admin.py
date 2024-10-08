@@ -62,7 +62,7 @@ def categories():
         ).all()
     else:
         # Load all the categories where the user is not searching
-        categories = Category.query.all()
+        categories = Category.query.filter(Category.created_by == g.user.id).all()
 
     return render_template("modules/products/categories/index.html", categories = categories, query=query)
 

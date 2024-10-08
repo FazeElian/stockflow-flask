@@ -15,7 +15,7 @@
             </button>
             <form action="{{ url_for('admin.categories') }}" method="post" class="search-bar">
                 <img src="{{ url_for('static', filename='img/icons/search.png') }}" alt="">
-                <input type="search" class="color-white inter" name="searchCategorie" id="search" placeholder="Buscar Categoría...">
+                <input type="text" class="color-white inter" name="searchCategorie" value="{{ query }}" id="search" placeholder="Buscar Categoría...">
             </form>
         </div>
         <div class="cont-create">
@@ -39,10 +39,8 @@
         <tbody>
             {% if categories %}
                 {% for category in categories %}
-                <!-- Check user -->
-                {% if g.user.id == category.created_by %}
                     <tr class="tbody">
-                        <td class="td td-no-cat">1</td>
+                        <td class="td td-no-cat">{{ loop.index }}</td>
                         <td class="td td-name-cat"><a href="#" class="color-white">{{ category.name }}</a></td>
                         <td class="td td-description-cat">
                             {% if category.description == "" %}
@@ -96,8 +94,19 @@
                             </a>
                         </td>
                     </tr>
-                {% endif %}
                 {% endfor %}
+            {% elif categories and categories|length == 0 %}
+                hola
+            {% else %}
+                {% if query %}
+                    <tr class="tbody">
+                        <td class="td" style="width: 100%;">Categoría no encontrada: {{ query }}</td>
+                    </tr>
+                {% else %}
+                    <tr class="tbody">
+                        <td class="td" style="width: 100%;">No hay categorías creadas por ti.</td>
+                    </tr>
+                {% endif %}
             {% endif %}
         </tbody>
     </table>

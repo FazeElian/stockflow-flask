@@ -15,8 +15,11 @@ bp = Blueprint("admin", __name__, url_prefix="/admin")
 # Database
 from stockflow import db
 
-# Categories models
+# Category model
 from .models import Category
+
+# User model
+from .models import User
 
 # Routes
 # Dashboard
@@ -29,7 +32,33 @@ def dashboard():
 @bp.route("/profile/")
 @login_required
 def profile():
-    return render_template("modules/users/profile.html")
+    return render_template("modules/users/profile/index.html")
+
+# Get user by id
+def get_user(id):
+    user = User.query.get_or_404(id) # Query to user table
+    return user
+
+# Update user - profile
+@bp.route("/profile/edit/<int:id>", methods = ("GET", "POST"))
+@login_required
+def update_user(id):
+    # Search on db user id
+    user = get_user(id)
+
+    if request.method == "POST":
+        user.names = request.form["names"]
+        user.last_names = request.form["last_names"]
+        user.username = request.form["username"]
+        user.email = request.form["email"]
+        user.profile_photo = request.form["profile_photo"]
+
+        db.session.commit()
+
+        # Redirection
+        return redirect(url_for("admin.profile"))
+
+    return render_template("modules/users/profile/edit.html", user = user)
 
 # Products
 @bp.route("/products/")

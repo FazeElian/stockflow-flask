@@ -1,0 +1,148 @@
+{% extends 'base-admin.html' %}
+{% block title %}Editar Perfil{% endblock %}
+{% block content %}
+    <head>
+        <!-- Styles for this view -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/modules/profile.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/modules/products.css') }}">
+    </head>
+    <div class="content-group inter bg-black-light">
+        <h2 class="color-white inter">Editar Perfil</h2>
+    </div>
+    {% if g.user %}
+        <form action="" method="post" class="form inter">
+            <div class="content-group bg-black-light cont-profile">
+                <div class="img-cont-group" style="margin-top: 2rem;">
+                    {% if g.user.profile_photo %}
+                        <img id="image-preview" src="{{ g.user.profile_photo }}" alt="{{ g.user.username }}">
+                    {% else %}
+                        <img id="image-preview" src="{{ url_for('static', filename='img/profile-photo-default-img.jpg') }}" alt="{{ g.user.username }}">
+                    {% endif %}
+                    <label for="custom-file-input" class="btn-select-img bg-turquese-light-blue inter color-black">
+                        <img src="{{ url_for('static', filename='img/icons/image.png') }}" alt="">
+                        Seleccionar Imagen
+                    </label>
+                    <input type="file" name="profile_photo" id="custom-file-input" style="display: none;" accept="image/*">
+                </div>
+                <div class="text-cont-group">
+                    <h1>Información de Perfil:</h1>
+                    <div class="form-prods-group">
+                        <label for="name">Nombre de Usuario: </label>
+                        {% if g.user.username %}
+                            <input 
+                                type="text"
+                                class="inter color-white"
+                                value="@{{ g.user.username }}"
+                                name="username"
+                                id="name"
+                                placeholder="Nombre de Usuario"
+                                required
+                            >
+                        {% else %}
+                            <input 
+                                type="text"
+                                class="inter color-white"
+                                name="username"
+                                id="name"
+                                placeholder="No ha sido registrado"
+                                required
+                            >
+                        {% endif %}
+                    </div>
+                    <div class="form-prods-group">
+                        <label for="name">Nombres: </label>
+                        {% if g.user.names %}
+                            <input 
+                                type="text"
+                                class="inter color-white"
+                                value="{{ g.user.names }}"
+                                name="names"
+                                id="name"
+                                placeholder="Nombres"
+                                required
+                            >
+                        {% else %}
+                            <input 
+                                type="text"
+                                class="inter color-white"
+                                name="names"
+                                id="name"
+                                placeholder="No ha sido registrado"
+                                required
+                            >
+                        {% endif %}
+                    </div>
+                    <div class="form-prods-group">
+                        <label for="name">Apellidos: </label>
+                        {% if g.user.last_names %}
+                            <input 
+                                type="text"
+                                class="inter color-white"
+                                value="{{ g.user.last_names }}"
+                                name="last_names"
+                                id="name"
+                                placeholder="Apellidos"
+                                required
+                            >
+                        {% else %}
+                            <input 
+                                type="text"
+                                class="inter color-white"
+                                name="last_names"
+                                id="name"
+                                placeholder="No ha sido registrado"
+                                required
+                            >
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="text-cont-group">
+                    <h1 style="visibility: hidden;">Información de Perfil: </h1>
+                    <div class="form-prods-group">
+                        <label for="name">Correo Electrónico: </label>
+                        {% if g.user.email %}
+                            <input 
+                                type="text"
+                                class="inter color-white"
+                                value="{{ g.user.email }}"
+                                name="email"
+                                id="name"
+                                placeholder="Correo Electrónico"
+                                required
+                            >
+                        {% else %}
+                            <input 
+                                type="text"
+                                class="inter color-white"
+                                name="email"
+                                id="name"
+                                placeholder="No ha sido registrado"
+                                required
+                            >
+                        {% endif %}
+                    </div>
+                    <div class="cont-profile-group">
+                        <label for="name">Contraseña: </label>
+                        <a href="#" class="btn-form color-black bg-turquese-light-blue inter btn-change-pass">
+                            <img src="{{ url_for('static',  filename='img/icons/password.png') }}" alt="">
+                            Cambiar contraseña
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="btns-form inter">
+                <a href="{{ url_for('admin.profile') }}" class="btn-form color-white btn-cancel">
+                    Cancelar
+                </a>
+                <button class="btn-form color-black bg-turquese-light-blue inter" type="submit">
+                    <img src="{{ url_for('static', filename='img/icons/edit-profile.png') }}" alt="">
+                    Actualizar Perfil
+                </button>
+            </div>
+        </form>
+    {% else %}
+    {% endif %}
+
+    <!-- Scripts for this view -->
+    <script src="{{ url_for('static', filename='js/modules/products/create.js') }}"></script>
+{% endblock %}

@@ -93,6 +93,18 @@ def update_category(id):
 
     return render_template("modules/products/categories/edit.html", category = category)
 
+# Delete category
+@bp.route("/products/categories/delete/<int:id>")
+@login_required
+def delete_category(id):
+    category = get_category(id)
+
+    db.session.delete(category)
+    db.session.commit()
+
+    # Redirection
+    return redirect(url_for("admin.categories"))
+    
 # Sales
 @bp.route("/sales/")
 @login_required

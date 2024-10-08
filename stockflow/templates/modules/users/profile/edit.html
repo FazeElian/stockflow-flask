@@ -10,12 +10,12 @@
         <h2 class="color-white inter">Editar Perfil</h2>
     </div>
     {% if g.user %}
-        <form action="" method="post" class="form inter">
+        <form action="" method="post" class="form inter" enctype="multipart/form-data">
             <div class="content-group bg-black-light cont-profile">
                 <div class="img-cont-group" style="margin-top: 2rem;">
                     {% if g.user.profile_photo %}
-                        <img id="image-preview" src="{{ g.user.profile_photo }}" alt="{{ g.user.username }}">
-                    {% else %}
+                        <img id="image-preview" src="{{ url_for('static', filename=user.profile_photo) }}" alt="{{ g.user.username }}">
+                    {% elif g.user.profile_photo == "" %}
                         <img id="image-preview" src="{{ url_for('static', filename='img/profile-photo-default-img.jpg') }}" alt="{{ g.user.username }}">
                     {% endif %}
                     <label for="custom-file-input" class="btn-select-img bg-turquese-light-blue inter color-black">
@@ -32,7 +32,7 @@
                             <input 
                                 type="text"
                                 class="inter color-white"
-                                value="@{{ g.user.username }}"
+                                value="{{ g.user.username }}"
                                 name="username"
                                 id="name"
                                 placeholder="Nombre de Usuario"

@@ -33,6 +33,11 @@
         gap: 1.5rem;
     }
 
+    .td-options-prods a:hover {
+        opacity: .6;
+        transition: .3s ease all;
+    }
+
 /* Form */
 .form-prod {
     display: flex;

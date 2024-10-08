@@ -18,7 +18,12 @@
                 <input type="text" class="color-white inter" name="search" id="search" placeholder="Buscar Producto...">
             </div>
         </div>
-        <div class="cont-create">
+        <div class="cont-create" style="gap: 1rem;">
+            <a href="{{ url_for('admin.categories') }}" class="btn-create bg-black color-white inter" style="border: 1px solid white;">
+                <img src="{{ url_for('static', filename='img/icons/categories.png') }}" alt="">
+                <h2>Categorías</h2>
+                <h3>Nuevo</h3>
+            </a>
             <a href="{{ url_for('admin.new') }}" class="btn-create bg-turquese-light-blue color-black inter">
                 <img src="{{ url_for('static', filename='img/icons/add-product.png') }}" alt="">
                 <h2>Nuevo producto</h2>

@@ -28,6 +28,12 @@ def products():
 def new():
     return render_template("modules/products/new.html")
 
+# Products Categories
+@bp.route("/products/categories/")
+@login_required
+def categories():
+    return render_template("modules/products/categories/index.html")
+
 # Sales
 @bp.route("/sales/")
 @login_required

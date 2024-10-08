@@ -43,18 +43,20 @@ class Category(db.Model):
 class Product(db.Model):
     # Table columns
     id = db.Column(db.Integer, primary_key = True) # Primary key
+    created_by = db.Column(db.Integer, db.ForeignKey("user.id"), nullable = False) # Foreign key
+    code = db.Column(db.String(10), nullable=False)
     name = db.Column(db.String(100), nullable = False)
-    category = db.Column(db.Integer, db.ForeignKey("category.name"), nullable = False) # Foreign key
-    description = db.Column(db.String(255), default='Sin descripción')
+    category = db.Column(db.Integer, db.ForeignKey("category.id"), nullable = False) # Foreign key
     price = db.Column(db.Integer, nullable = False)
-    image = db.Column(db.String(255), nullable=True, default="")
+    image = db.Column(db.String(255), nullable = True)
 
     # Create the object -> constructor
-    def __init__(self, name, category, price, description = "Sin descripción", image = ""):
+    def __init__(self, created_by, code, name, category, price, image):
+        self.created_by = created_by
+        self.code = code
         self.name = name
         self.category = category
         self.price = price
-        self.description = description
         self.image = image
 
     # Get user data -> representation

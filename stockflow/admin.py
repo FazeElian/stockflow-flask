@@ -15,8 +15,12 @@ bp = Blueprint("admin", __name__, url_prefix="/admin")
 # Database
 from stockflow import db
 
+# Models
 # Category model
 from .models import Category
+
+# Product model
+from .models import Product
 
 # User model
 from .models import User
@@ -84,11 +88,48 @@ def update_user(id):
 def products():
     return render_template("modules/products/index.html")
 
+from werkzeug.utils import secure_filename
+
+# def get_image(id):
+#     product = Product.query.get_or_404(id)
+#     image = ""
+#     if image != "":
+#         image = product.image
+
+#     return image
+
 # New product
-@bp.route("/products/new/")
+@bp.route("/products/new/", methods=("GET", "POST"))
 @login_required
 def new_product():
-    return render_template("modules/products/new.html")
+    # Get all the categories that user created
+    categories = Category.query.filter(Category.created_by == g.user.id).all()
+    image = None
+
+    if request.method == "POST":
+        name = request.form["name"]
+        code = request.form["code"]
+        category = request.form["category"]
+        price = request.form["price"]
+
+        if "image" in request.files and request.files["image"]:
+            uploaded_image = request.files["image"]
+            
+            filename = secure_filename(uploaded_image.filename)
+            uploaded_image.save(f"stockflow/static/media/product/{filename}")  # Guarda el archivo
+            image = f"media/product/{filename}"  # Guarda la URL en la variable
+
+        # Crea el nuevo producto
+        product = Product(g.user.id, name, code, category, price, image)
+
+        # Agrega el producto a la base de datos
+        db.session.add(product)
+        db.session.commit()
+
+        # Redirección
+        return redirect(url_for("admin.products"))
+
+    return render_template("modules/products/new.html", categories=categories, image=image)
 
 # Products Categories
 @bp.route("/products/categories/", methods = ("GET", "POST"))

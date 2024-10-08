@@ -1,7 +1,22 @@
-from flask import Blueprint, render_template
+from flask import (
+    Blueprint, 
+    render_template, 
+    request, 
+    g, 
+    redirect, 
+    url_for,
+    flash
+)
+
 from stockflow.auth import login_required
 
 bp = Blueprint("admin", __name__, url_prefix="/admin")
+
+# Database
+from stockflow import db
+
+# Categories models
+from .models import Category
 
 # Routes
 # Dashboard
@@ -32,12 +47,27 @@ def new_product():
 @bp.route("/products/categories/")
 @login_required
 def categories():
-    return render_template("modules/products/categories/index.html")
+    # Database query
+    categories = Category.query.all()
+
+    return render_template("modules/products/categories/index.html", categories = categories)
 
 # New category
-@bp.route("/categories/new/")
+@bp.route("/products/categories/new/", methods = ("GET", "POST"))
 @login_required
 def new_category():
+    if request.method == "POST":
+        name = request.form["name"]
+        description = request.form["description"]
+
+        category = Category(g.user.id, name, description)
+
+        db.session.add(category)
+        db.session.commit()
+
+        # Redirection
+        return redirect(url_for("admin.categories"))
+
     return render_template("modules/products/categories/new.html")
 
 # Sales

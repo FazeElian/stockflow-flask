@@ -1,0 +1,79 @@
+{% extends 'base-admin.html' %}
+{% block title %}Nuevo Producto{% endblock %}
+{% block content %}
+    <head>
+        <!-- Styles for this view -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/modules/products.css') }}">
+    </head>
+    <div class="content-group inter bg-black-light">
+        <h2 class="color-white inter">Nuevo Producto</h2>
+    </div>
+    <form action="" method="post" class="form inter form-prods">
+        <div class="content-group bg-black-light form-prod">
+            <div class="img-form-group">
+                <img id="image-preview" src="{{ url_for('static', filename='img/product-default-img.jpg') }}" alt="">
+                <label for="custom-file-input" class="btn-select-img bg-turquese-light-blue inter color-black">
+                    <img src="{{ url_for('static', filename='img/icons/image.png') }}" alt="">
+                    Seleccionar Imagen
+                </label>
+                <input type="file" name="custom-file-input" id="custom-file-input" style="display: none;" accept="image/*">
+            </div>
+            <div class="text-form-group">
+                <h1>Información de Nuevo Producto: </h1>
+
+                <div class="form-prods-group">
+                    <label for="name">Nombre: </label>
+                    <input 
+                        type="text"
+                        class="inter color-white"
+                        name="name"
+                        id="name"
+                        placeholder="Ingrese aquí nombre de producto"
+                        required
+                    >
+                </div>
+                <div class="form-prods-group">
+                    <label for="name">Categoría: </label>
+                    <select name="categories" id="categories" class="inter color-white">
+                        <option value="default">Seleccionar Categoría</option>
+                    </select>
+                </div>
+                <div class="form-prods-group">
+                    <label for="name">Código: </label>
+                    <input
+                        type="text"
+                        class="inter color-white"
+                        name="name"
+                        id="name"
+                        placeholder="Ingrese aquí código de producto"
+                        required
+                    >
+                </div>
+                <div class="form-prods-group">
+                    <label for="name">Precio: </label>
+                    <input
+                        type="number"
+                        step="50"
+                        class="inter color-white"
+                        name="name"
+                        id="name"
+                        placeholder="Ingrese aquí precio de producto"
+                        required
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="btns-form inter">
+            <a href="{{ url_for('admin.products') }}" class="btn-form color-white btn-cancel">
+                Cancelar
+            </a>
+            <button class="btn-form color-black btn-submit bg-turquese-light-blue inter" type="submit">
+                <img src="{{ url_for('static', filename='img/icons/add-product.png') }}" alt="">
+                Añadir Producto
+            </button>
+        </div>
+    </form>
+
+    <!-- Scripts for this view -->
+    <script src="{{ url_for('static', filename='js/modules/products/create.js') }}"></script>
+{% endblock %}

@@ -1,3 +1,4 @@
+/* Table */
 .th-no-prods,
 .td-no-prods {
     width: 8%;
@@ -31,3 +32,142 @@
     .td-options-prods {
         gap: 1.5rem;
     }
+
+/* Form */
+.form-prod {
+    display: flex;
+    width: 100%;
+    height: 600px;
+    padding: 1.5rem;
+}
+
+    .img-form-group {
+        display: flex;
+        width: 340px;
+        flex-direction: column;
+    }
+
+        .img-form-group img {
+            width: 100%;
+            height: 85%;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .btn-select-img {
+            display: flex;
+            width: 100%;
+            height: auto;
+            border: none;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 2rem 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .btn-select-img img {
+            width: 30px;
+            height: 30px;
+            margin-right: 8px;
+        }
+
+            .btn-select-img:hover {
+                opacity: 0.8;
+                transition: .3s ease all;
+            }
+    
+    .text-form-group {
+        display: flex;
+        width: auto;
+        height: 100%;
+        margin-left: 1rem;
+        padding: 2rem 2.5rem 1.5rem;
+        flex-direction: column;
+    }
+
+        .text-form-group h1{
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-prods-group {
+            display: flex;
+            width: 100%;
+            height: auto;
+            flex-direction: column;
+            margin-bottom: 2.5rem;
+        }
+
+            .form-prods-group label{
+                font-size: 18px;
+                font-weight: 500;
+            }
+
+            .form-prods-group input,
+            .form-prods-group select {
+                font-size: 16px;
+                margin-top: 7px;
+                padding: 7px 0 7px;
+                font-weight: 500;
+                background: transparent;
+                border: none;
+                border-bottom: 2px solid white;
+                outline: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+            }
+
+                .form-prods-group input:focus {
+                    border-bottom: 2px solid #A7D9D0;
+                    transition: .1s ease-in;
+                }
+
+/* Responsive 1440px */
+@media screen and (max-width: 1440px) {
+    .form-prod {
+        height: 530px;
+    }
+
+    .img-form-group {
+        width: 300px;
+        min-width: 300px;
+    }
+
+    .text-form-group h1 {
+        font-size: 1.8rem;
+    }
+
+    .form-prods-group label{
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .form-prods-group input,
+    .form-prods-group select {
+        font-size: 15px;
+        border-bottom: 1px solid white;
+        margin-top: 5px;
+    }
+
+        .form-prods-group input:focus {
+            border-bottom: 1px solid#A7D9D0;
+        }
+}
+
+/* Responsive 1024px */
+@media screen and (max-width: 1024px) {
+    .form-prod {
+        height: auto;
+        padding: 1.5rem 1.5rem 0.7rem;
+    }
+
+    .text-form-group {
+        padding: 2rem 1rem 1.5rem;
+    }
+}

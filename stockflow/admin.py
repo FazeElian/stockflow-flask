@@ -20,9 +20,15 @@ def profile():
 @bp.route("/products/")
 @login_required
 def products():
-    return render_template("modules/products.html")
+    return render_template("modules/products/index.html")
 
-# sSles
+# New product
+@bp.route("/products/new/")
+@login_required
+def new():
+    return render_template("modules/products/new.html")
+
+# Sales
 @bp.route("/sales/")
 @login_required
 def sales():

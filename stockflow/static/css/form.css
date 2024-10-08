@@ -1,0 +1,45 @@
+
+.form {
+    display: flex;
+    width: 100%;
+    margin-top: 1rem;
+    flex-direction: column;
+}
+
+/* Form Buttons */
+.btns-form {
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+
+    .btn-form {
+        display: flex;
+        width: auto;
+        height: auto;
+        padding: 12px 2rem 12px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        cursor: pointer;
+        border: none;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+        .btn-form img {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+        }
+
+        .btn-form:hover {
+            opacity: 0.8;
+            transition: .3s ease all;
+        }
+
+        .btn-cancel {
+            background-color: #FC003C;
+        }

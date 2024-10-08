@@ -3,13 +3,19 @@ from stockflow import db
 class User(db.Model):
     # Table columns
     id = db.Column(db.Integer, primary_key = True) # Primary key
-    email = db.Column(db.String(255), unique = True, nullable = False) # Max length and unique property and not null
+    email = db.Column(db.String(255), unique = True, nullable = False)
     username = db.Column(db.String(20), unique = True, nullable = False)
+    names = db.Column(db.String(50), nullable = True, default="")
+    last_names = db.Column(db.String(50), nullable = True, default="")
     password = db.Column(db.Text, nullable = False)
+    profile_photo = db.Column(db.String(255), nullable=True, default="")
 
     # Create the object -> constructor
-    def __init__(self, email, username, password):
+    def __init__(self, email, username, password, names = "", last_names = "", profile_photo = ""):
         self.email = email
+        self.names = names
+        self.last_names = last_names
+        self.profile_photo = profile_photo
         self.username = username
         self.password = password
 
@@ -21,7 +27,7 @@ class Category(db.Model):
     # Table columns
     id = db.Column(db.Integer, primary_key = True) # Primary key
     created_by = db.Column(db.Integer, db.ForeignKey("user.id"), nullable = False) # Foreign key
-    name = db.Column(db.String(50), unique = True, nullable = False) # Max length and unique property and not null
+    name = db.Column(db.String(50), unique = True, nullable = False)
     description = db.Column(db.String(255), default='Sin descripción')
 
     # Create the object -> constructor

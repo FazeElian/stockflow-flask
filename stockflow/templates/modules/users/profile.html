@@ -11,13 +11,12 @@
     {% if g.user %}
         <div class="form inter">
             <div class="content-group bg-black-light cont-profile">
-                <div class="img-cont-group">
-                    <img id="image-preview" src="{{ url_for('static', filename='img/profile-photo-default-img.jpg') }}" alt="">
-                    <label for="custom-file-input" class="btn-select-img bg-turquese-light-blue inter color-black">
-                        <img src="{{ url_for('static', filename='img/icons/image.png') }}" alt="">
-                        Seleccionar Imagen
-                    </label>
-                    <input type="file" name="custom-file-input" id="custom-file-input" style="display: none;" accept="image/*">
+                <div class="img-cont-group" style="margin-top: 2rem;">
+                    {% if g.user.profile_photo %}
+                        <img id="image-preview" src="{{ g.user.profile_photo }}" alt="{{ g.user.username }}">
+                    {% else %}
+                        <img id="image-preview" src="{{ url_for('static', filename='img/profile-photo-default-img.jpg') }}" alt="{{ g.user.username }}">
+                    {% endif %}
                 </div>
                 <div class="text-cont-group">
                     <h1>Información de Perfil:</h1>

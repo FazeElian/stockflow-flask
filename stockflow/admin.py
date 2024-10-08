@@ -25,7 +25,7 @@ def products():
 # New product
 @bp.route("/products/new/")
 @login_required
-def new():
+def new_product():
     return render_template("modules/products/new.html")
 
 # Products Categories
@@ -33,6 +33,12 @@ def new():
 @login_required
 def categories():
     return render_template("modules/products/categories/index.html")
+
+# New category
+@bp.route("/categories/new/")
+@login_required
+def new_category():
+    return render_template("modules/products/categories/new.html")
 
 # Sales
 @bp.route("/sales/")

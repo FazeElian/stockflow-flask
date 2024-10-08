@@ -1,7 +1,81 @@
 {% extends 'base-admin.html' %}
 {% block title %}Perfil{% endblock %}
 {% block content %}
+    <head>
+        <!-- Styles for this view -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/modules/profile.css') }}">
+    </head>
     <div class="content-group inter bg-black-light">
         <h2 class="color-white inter">Perfil</h2>
     </div>
+    {% if g.user %}
+        <div class="form inter">
+            <div class="content-group bg-black-light cont-profile">
+                <div class="img-cont-group">
+                    <img id="image-preview" src="{{ url_for('static', filename='img/profile-photo-default-img.jpg') }}" alt="">
+                    <label for="custom-file-input" class="btn-select-img bg-turquese-light-blue inter color-black">
+                        <img src="{{ url_for('static', filename='img/icons/image.png') }}" alt="">
+                        Seleccionar Imagen
+                    </label>
+                    <input type="file" name="custom-file-input" id="custom-file-input" style="display: none;" accept="image/*">
+                </div>
+                <div class="text-cont-group">
+                    <h1>Información de Perfil:</h1>
+                    <div class="cont-profile-group">
+                        <label for="name">Nombre de Usuario: </label>
+                        {% if g.user.username %}
+                            <h2 class="color-white-gray">@{{ g.user.username }}</h2>
+                        {% else %}
+                            <h2 class="color-gray">No registrado</h2>
+                        {% endif %}
+                    </div>
+                    <div class="cont-profile-group">
+                        <label for="name">Nombres: </label>
+                        {% if g.user.name %}
+                            <h2 class="color-white-gray">{{ g.user.name }}</h2>
+                        {% else %}
+                            <h2 class="color-gray">No registrado</h2>
+                        {% endif %}
+                    </div>
+                    <div class="cont-profile-group">
+                        <label for="name">Apellidos: </label>
+                        {% if g.user.lastName %}
+                            <h2 class="color-white-gray">{{ g.user.lastName }}</h2>
+                        {% else %}
+                            <h2 class="color-gray">No registrado</h2>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="text-cont-group">
+                    <h1 style="visibility: hidden;">Información de Perfil: </h1>
+                    <div class="cont-profile-group">
+                        <label for="name">Correo Electrónico: </label>
+                        {% if g.user.email %}
+                            <h2 class="color-white-gray">{{ g.user.email }}</h2>
+                        {% else %}
+                            <h2 class="color-gray">No registrado</h2>
+                        {% endif %}
+                    </div>
+                    <div class="cont-profile-group">
+                        <label for="name">Contraseña: </label>
+                        <a href="#" class="btn-form color-black bg-turquese-light-blue inter btn-change-pass">
+                            <img src="{{ url_for('static',  filename='img/icons/password.png') }}" alt="">
+                            Cambiar contraseña
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="btns-form inter" style="justify-content: flex-end;">
+                <a href="#" class="btn-form color-black bg-turquese-light-blue inter" type="submit">
+                    <img src="{{ url_for('static', filename='img/icons/edit-profile.png') }}" alt="">
+                    Editar Perfil
+                </a>
+            </div>
+        </div>
+    {% else %}
+        
+    {% endif %}
+
+    <!-- Scripts for this view -->
+    <script src="{{ url_for('static', filename='js/modules/products/create.js') }}"></script>
 {% endblock %}

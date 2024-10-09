@@ -71,20 +71,20 @@ class Inventory(db.Model):
     id = db.Column(db.Integer, primary_key = True) # Primary key
     created_by = db.Column(db.Integer, db.ForeignKey("user.id"), nullable = False) # Foreign key
     product_id = db.Column(db.Integer, db.ForeignKey("product.id"), nullable = False) # Foreign key
-    inflows = db.Column(db.Integer, nullable = False, default = 0)
+    inflows = db.Column(db.Integer, nullable = False)
     outflows = db.Column(db.Integer, nullable = True, default = 0)
-    outflows = db.Column(db.Integer, nullable = False)
+    stock = db.Column(db.Integer, nullable = False, default = 0)
 
     # Relationship with Product
     product = db.relationship('Product', backref='inventory', lazy=True)
 
     # Create the object -> constructor
-    def __init__(self, created_by, product_id, stock, inflows = 0, outflows = 0):
+    def __init__(self, created_by, product_id, inflows, outflows = 0):
         self.created_by = created_by
         self.product_id = product_id
-        self.inflows = inflows
-        self.outflows = outflows
-        self.stock = stock
+        self.inflows = int(inflows)
+        self.outflows = int(outflows)
+        self.stock = self.inflows - self.outflows
 
     # Get user data -> representation
     def __repr__(self):

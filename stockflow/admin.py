@@ -167,6 +167,18 @@ def update_product(id):
 
     return render_template("modules/products/edit.html", product = product, categories = categories, image = image)
 
+# Delete product
+@bp.route("/products/delete/<int:id>")
+@login_required
+def delete_product(id):
+    product = get_product(id)
+
+    db.session.delete(product)
+    db.session.commit()
+
+    # Redirection
+    return redirect(url_for("admin.products"))
+
 # Products Categories
 @bp.route("/products/categories/", methods = ("GET", "POST"))
 @login_required

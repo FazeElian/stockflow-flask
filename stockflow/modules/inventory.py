@@ -63,3 +63,25 @@ def new():
         return redirect(url_for("admin/inventories.index"))
 
     return render_template("modules/inventories/new.html", products = products)
+
+# Get inventory by id
+def get_inventory(id):
+    inventory = Inventory.query.get_or_404(id)
+    return inventory
+
+# Update inventory
+@bp.route("/edit/<int:id>", methods = ("GET", "POST"))
+@login_required
+def update(id):
+    # Search on db inventory id
+    inventory = get_inventory(id)
+
+    if request.method == "POST":
+        inventory.inflows = request.form["inflows"]
+
+        db.session.commit()
+
+        # Redirection
+        return redirect(url_for("admin/inventories.index"))
+
+    return render_template("modules/inventories/edit.html", inventory = inventory)

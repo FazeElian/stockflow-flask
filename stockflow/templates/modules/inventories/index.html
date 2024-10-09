@@ -51,7 +51,7 @@
                             <td class="td td-outflows-inv">{{ inventory.outflows }}</td>
                             <td class="td td-stock-inv">{{ inventory.stock }}</td>
                             <td class="td td-options-inv">
-                                <a href="#">
+                                <a href="{{ url_for('admin/inventories.update', id = inventory.id) }}">
                                     <svg 
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 16 16"

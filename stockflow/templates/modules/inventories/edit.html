@@ -1,19 +1,16 @@
 {% extends 'base-admin.html' %}
-    {% block title %}Registrar Inventario{% endblock %}
+    {% block title %}Editar Inventario{% endblock %}
 {% block content %}
     <div class="content-group inter bg-black-light">
-        <h2 class="color-white inter">Registrar Inventario</h2>
+        <h2 class="color-white inter">Editar Inventario</h2>
     </div>
     <form action="" method="post" class="form inter form-prods">
         <div class="content-group bg-black-light form-content">
             <h1>Información de Inventario:</h1>
             <div class="form-group" style="margin-top: 0;">
                 <label for="name">Producto:</label>
-                <select name="product" id="products" class="inter color-white" required>
-                    <option value="default" class="bg-black">Seleccionar Producto</option>
-                    {% for product in products %}
-                        <option value="{{ product.id }}" class="bg-black">{{ product.name }}</option>
-                    {% endfor %}
+                <select name="product" id="products" class="inter color-white" disabled>
+                    <option value="{{ inventory.id }}" class="bg-black">{{ inventory.product.name }}</option>
                 </select>
             </div>
             <div class="form-group">
@@ -22,8 +19,9 @@
                     type="number"
                     class="inter color-white"
                     name="inflows"
+                    value="{{ inventory.inflows }}"
                     id="name"
-                    placeholder="Ingresa aquí la cantidad de stock inicial"
+                    placeholder="Ingresa aquí nombre de categoría"
                     required
                 >
             </div>
@@ -33,8 +31,8 @@
                 Cancelar
             </a>
             <button class="btn-form color-black btn-submit bg-turquese-light-blue inter" type="submit">
-                <img src="{{ url_for('static', filename='img/icons/add-inventory.png') }}" alt="">
-                Registrar Inventario
+                <img src="{{ url_for('static', filename='img/icons/add-product.png') }}" alt="">
+                Actualizar Inventario
             </button>
         </div>
     </form>

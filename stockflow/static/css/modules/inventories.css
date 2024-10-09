@@ -1,0 +1,44 @@
+/* Table */
+.th-no-inv,
+.td-no-inv {
+    width: 8%;
+}
+
+.th-code-inv,
+.td-code-inv {
+    width: 12%;
+}
+
+.th-name-inv,
+.td-name-inv {
+    width: 23%;
+}
+
+.th-inflows-inv,
+.td-inflows-inv {
+    width: 14%;
+}
+
+.th-outflows-inv,
+.td-outflows-inv {
+    width: 14%;
+}
+
+.th-stock-inv,
+.td-stock-inv {
+    width: 14%;
+}
+
+.th-options-inv,
+.td-options-inv {
+    width: 15%;
+}
+
+    .td-options-inv {
+        gap: 1.5rem;
+    }
+
+    .td-options-inv a:hover {
+        opacity: .6;
+        transition: .3s ease all;
+    }

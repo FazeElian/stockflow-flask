@@ -269,6 +269,12 @@ def delete_category(id):
     # Redirection
     return redirect(url_for("admin.categories"))
 
+# Inventories
+@bp.route("/inventories/")
+@login_required
+def inventories():
+    return render_template("modules/inventories/index.html")
+
 # Sales
 @bp.route("/sales/")
 @login_required

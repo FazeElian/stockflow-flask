@@ -49,7 +49,7 @@
                     {% for product in products | reverse %}
                         {% if g.user.id == product.created_by %}
                             <td class="td td-no-prods">{{ loop.index }}</td>
-                            <td class="td td-code-prods">{{ product.code }}</td>
+                            <td class="td td-code-prods"># {{ product.code }}</td>
                             <td class="td td-name-prods"><a href="#" class="color-white">{{ product.name }}</a></td>
                             <td class="td td-category-prods">{{ product.category.name }}</td>
                             <td class="td td-price-prods">{{ product.price }} $</td>

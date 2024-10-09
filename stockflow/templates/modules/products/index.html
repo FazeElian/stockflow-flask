@@ -52,7 +52,7 @@
                     <td class="td td-category-prods">{{ product.category.name }}</td>
                     <td class="td td-price-prods">{{ product.price }}</td>
                     <td class="td td-options-prods">
-                        <a href="#">
+                        <a href="{{ url_for('admin.update_product', id = product.id) }}">
                             <svg 
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 16 16"

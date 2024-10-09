@@ -107,13 +107,13 @@ def new_product():
             uploaded_image = request.files["image"]
             
             filename = secure_filename(uploaded_image.filename)
-            uploaded_image.save(f"stockflow/static/media/product/{filename}")  # Guarda el archivo
-            image = f"media/product/{filename}"  # Guarda la URL en la variable
+            uploaded_image.save(f"stockflow/static/media/product/{filename}")  # Save the file
+            image = f"media/product/{filename}"  # Save the route of the file
 
-        # Crea el nuevo producto
+        # Create the new product
         product = Product(g.user.id, name, code, category_id, price, image)
 
-        # Agrega el producto a la base de datos
+        # Add the product to db
         db.session.add(product)
         db.session.commit()
 
@@ -121,6 +121,51 @@ def new_product():
         return redirect(url_for("admin.products"))
 
     return render_template("modules/products/new.html", categories=categories, image=image)
+
+# Get product by id
+def get_product(id):
+    product = Product.query.get_or_404(id)
+    return product
+
+def get_product_image(id):
+    product = Product.query.get_or_404(id)
+    product_img = ""
+    if product_img != "":
+        product_img = product.image
+
+    return product_img
+
+# Update product
+@bp.route("/products/edit/<int:id>", methods = ("GET", "POST"))
+@login_required
+def update_product(id):
+    product = get_product(id)
+    image = get_product_image(id)
+
+    # Get all the categories that user created
+    categories = Category.query.filter(Category.created_by == g.user.id).all()
+
+    if request.method == "POST":
+        product.name = request.form["name"]
+        product.code = request.form["code"]
+        product.category_id = request.form["category"]
+        product.price = request.form["price"]
+
+        if "image" in request.files and request.files["image"]:
+            uploaded_image = request.files["image"]
+            
+            filename = secure_filename(uploaded_image.filename)
+            uploaded_image.save(f"stockflow/static/media/product/{filename}")  # Save the file
+            image = f"media/product/{filename}"  # Save the route of the file
+
+
+        # Save changes
+        db.session.commit()
+
+        # Redirection
+        return redirect(url_for("admin.products"))
+
+    return render_template("modules/products/edit.html", product = product, categories = categories, image = image)
 
 # Products Categories
 @bp.route("/products/categories/", methods = ("GET", "POST"))

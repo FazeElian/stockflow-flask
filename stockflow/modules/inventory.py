@@ -19,10 +19,27 @@ from stockflow.models import Inventory
 from stockflow.models import Product
 
 # Inventories
-@bp.route("/")
+@bp.route("/", methods = ("GET", "POST"))
 @login_required
 def index():
-    return render_template("modules/inventories/index.html")
+    query = ""
+    inventories = []
+
+    if request.method == "POST":
+        query = request.form.get("searchInventory", "")
+
+        # Filter inventories by product name or product code
+        inventories = Inventory.query.join(Product).filter(
+            (
+                Product.name.ilike(f"%{query}%") |  # Searching by product name
+                Product.code.ilike(f"%{query}%")    # Searching by product code
+            )
+        ).all()
+    else:
+        # Load all the inventories where the user is not searching
+        inventories = Inventory.query.filter(Inventory.created_by == g.user.id).all()
+
+    return render_template("modules/inventories/index.html", inventories = inventories, query=query)
 
 # New
 @bp.route("/new/", methods=("GET", "POST"))

@@ -18,9 +18,10 @@
 
     .side-bar h1 a {
         display: flex;
-        font-size: 2rem;
+        font-size: 2.3rem;
         align-items: center;
-        justify-content: space-around;
+        justify-content: center;
+        gap: 5px;
     }
 
     .side-bar h1 a img {
@@ -122,7 +123,7 @@
 /* Responsive 1440px */
 @media screen and (max-width: 1440px) {
     .side-bar h1 a {
-        font-size: 1.7rem;
+        font-size: 2rem;
     }
 
     .item-side-nav-bar,

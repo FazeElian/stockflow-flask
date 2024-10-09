@@ -1,6 +1,9 @@
 /* Inter font */
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
+/* Afacad font */
+@import url('https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap');
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -152,9 +155,15 @@ a {
     }
 
 /* Font styles */
-    /* Roboto */
+    /* Inter */
     .inter {
         font-family: "Inter", sans-serif;
+        font-optical-sizing: auto;
+        font-style: normal;
+    }
+
+    .afacad {
+        font-family: "Afacad", sans-serif;
         font-optical-sizing: auto;
         font-style: normal;
     }

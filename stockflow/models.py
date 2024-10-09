@@ -89,3 +89,19 @@ class Inventory(db.Model):
     # Get user data -> representation
     def __repr__(self):
         return f"{self.name}"
+class Customer(db.Model):
+    # Table columns
+    id = db.Column(db.Integer, primary_key = True) # Primary key
+    created_by = db.Column(db.Integer, db.ForeignKey("user.id"), nullable = False) # Foreign key
+    name = db.Column(db.String(50), unique = True, nullable = False)
+    description = db.Column(db.String(255), default='Sin descripción')
+
+    # Create the object -> constructor
+    def __init__(self, created_by, name, description = "Sin descripción"):
+        self.created_by = created_by
+        self.name = name
+        self.description = description
+
+    # Get user data -> representation
+    def __repr__(self):
+        return f"{self.id}"

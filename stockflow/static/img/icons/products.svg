@@ -12,11 +12,13 @@
         stroke="currentcolor"
         stroke-linecap="round"
         stroke-linejoin="round"
+        stroke-width="1.25"
     />
     <path 
         d="M9.7167 7.08331V4.01555C9.7167 3.36466 9.43041 2.74042 8.92083 2.28017C8.41124 1.81992 7.72009 1.56135 6.99943 1.56135C6.27877 1.56135 5.58762 1.81992 5.07803 2.28017C4.56845 2.74042 4.28217 3.36466 4.28217 4.01555V7.08331"
         stroke="currentcolor"
         stroke-linecap="round"
         stroke-linejoin="round"
+        stroke-width="1.25"
     />
 </svg>

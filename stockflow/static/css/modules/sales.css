@@ -1,0 +1,29 @@
+/* Table */
+.th-no-sale,
+.td-no-sale {
+    width: 12%;
+}
+
+.th-date-sale,
+.td-date-sale {
+    width: 31%;
+}
+
+.th-total-sale,
+.td-total-sale {
+    width: 31%;
+}
+
+.th-options-sale,
+.td-options-sale {
+    width: 26%;
+}
+
+    .td-options-sale {
+        gap: 1.5rem;
+    }
+
+    .td-options-sale a:hover {
+        opacity: .6;
+        transition: .3s ease all;
+    }

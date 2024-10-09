@@ -48,6 +48,12 @@ def new():
     # Get all the products that user created
     products = Product.query.filter(Product.created_by == g.user.id).all()
 
+    # Get the ids of the products on inventory
+    inventory_prods_ids = [item.product_id for item in Inventory.query.all()]
+
+    # Filter the products that aren't on inventory
+    available_products = [product for product in products if product.id not in inventory_prods_ids]
+
     if request.method == "POST":
         product_id = request.form["product"]
         inflows = request.form["inflows"]
@@ -62,7 +68,7 @@ def new():
         # Redirection
         return redirect(url_for("admin/inventories.index"))
 
-    return render_template("modules/inventories/new.html", products = products)
+    return render_template("modules/inventories/new.html", products = available_products)
 
 # Get inventory by id
 def get_inventory(id):

@@ -12,7 +12,9 @@
                 <select name="product" id="products" class="inter color-white" required>
                     <option value="default" class="bg-black">Seleccionar Producto</option>
                     {% for product in products %}
-                        <option value="{{ product.id }}" class="bg-black">{{ product.name }}</option>
+                        {% if product %}
+                            <option value="{{ product.id }}" class="bg-black">{{ product.name }}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
             </div>

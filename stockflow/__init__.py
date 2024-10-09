@@ -30,6 +30,22 @@ def create_app():
     from . import auth
     app.register_blueprint(auth.bp)
 
+    # Product blueprint
+    from stockflow.modules import product
+    app.register_blueprint(product.bp)
+
+    # Products Category blueprint
+    from stockflow.modules import category
+    app.register_blueprint(category.bp)
+
+    # Inventories blueprint
+    from stockflow.modules import inventory
+    app.register_blueprint(inventory.bp)
+
+    # Sales blueprint
+    from stockflow.modules import sale
+    app.register_blueprint(sale.bp)
+
     # Create database tables
     with app.app_context():
         db.create_all()

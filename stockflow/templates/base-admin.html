@@ -58,8 +58,8 @@
                     Dashboard
                 </a>
                 <a 
-                    href="{{ url_for('admin.products') }}"
-                    class="item-side-nav-bar inter {% if request.endpoint == 'admin.products' %}item-side-nav-bar--active{% endif %}"
+                    href="{{ url_for('admin/products.index') }}"
+                    class="item-side-nav-bar inter {% if request.endpoint == 'admin/products.index' %}item-side-nav-bar--active{% endif %}"
                 >
                     <svg 
                         width="22" 
@@ -86,8 +86,8 @@
                     Productos
                 </a>
                 <a 
-                    href="{{ url_for('admin.categories') }}"
-                    class="item-side-nav-bar inter {% if request.endpoint == 'admin.categories' %}item-side-nav-bar--active{% endif %}"
+                    href="{{ url_for('admin/products/categories.index') }}"
+                    class="item-side-nav-bar inter {% if request.endpoint == 'admin/products/categories.index' %}item-side-nav-bar--active{% endif %}"
                 >
                     <svg 
                         version="1.0" 
@@ -129,8 +129,8 @@
                     Categorías
                 </a>
                 <a 
-                    href="{{ url_for('admin.inventories') }}"
-                    class="item-side-nav-bar inter {% if request.endpoint == 'admin.inventories' %}item-side-nav-bar--active{% endif %}"
+                    href="{{ url_for('admin/inventories.index') }}"
+                    class="item-side-nav-bar inter {% if request.endpoint == 'admin/inventories.index' %}item-side-nav-bar--active{% endif %}"
                 >
                     <svg 
                         xmlns="http://www.w3.org/2000/svg"
@@ -166,8 +166,8 @@
                     Inventarios
                 </a>
                 <a 
-                    href="{{ url_for('admin.sales') }}"
-                    class="item-side-nav-bar inter {% if request.endpoint == 'admin.sales' %}item-side-nav-bar--active{% endif %}"
+                    href="{{ url_for('admin/sales.index') }}"
+                    class="item-side-nav-bar inter {% if request.endpoint == 'admin/sales.index' %}item-side-nav-bar--active{% endif %}"
                 >
                     <svg
                         width="22"

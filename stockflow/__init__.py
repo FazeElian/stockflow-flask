@@ -46,6 +46,10 @@ def create_app():
     from stockflow.modules import sale
     app.register_blueprint(sale.bp)
 
+    # Customers blueprint
+    from stockflow.modules import customer
+    app.register_blueprint(customer.bp)
+
     # Create database tables
     with app.app_context():
         db.create_all()

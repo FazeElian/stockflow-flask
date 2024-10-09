@@ -81,13 +81,27 @@ def update_user(id):
     return render_template("modules/users/profile/edit.html", user = user, profile_photo = profile_photo)
 
 # Products
-@bp.route("/products/")
+@bp.route("/products/", methods = ("GET", "POST"))
 @login_required
 def products():
-    # Database query
-    products = Product.query.filter(Product.created_by == g.user.id).all()
+    query = ""
+    products = []
 
-    return render_template("modules/products/index.html", products = products)
+    if request.method == "POST":
+        query = request.form.get("searchProduct", "")
+
+        # Filter the products when the user put a value on the search bar input
+        products = Product.query.filter(
+            (
+                Product.name.ilike(f"%{query}%") |  # Searching by name
+                Product.code.ilike(f"%{query}%")  # Searching by code
+            )
+        ).all()
+    else:
+        # Load all the products where the user is not searching
+        products = Product.query.filter(Product.created_by == g.user.id).all()
+
+    return render_template("modules/products/index.html", products = products, query=query)
 
 # New product
 @bp.route("/products/new/", methods=("GET", "POST"))

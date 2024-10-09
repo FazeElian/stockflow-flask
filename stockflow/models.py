@@ -46,7 +46,7 @@ class Product(db.Model):
     created_by = db.Column(db.Integer, db.ForeignKey("user.id"), nullable = False) # Foreign key
     code = db.Column(db.String(10), nullable=False)
     name = db.Column(db.String(100), nullable = False)
-    category = db.Column(db.Integer, db.ForeignKey("category.id"), nullable = False) # Foreign key
+    category = db.Column(db.String(50), db.ForeignKey("category.name"), nullable = False) # Foreign key
     price = db.Column(db.Integer, nullable = False)
     image = db.Column(db.String(255), nullable = True)
 

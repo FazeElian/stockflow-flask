@@ -9,6 +9,7 @@ from flask import (
 )
 
 from stockflow.auth import login_required
+from werkzeug.utils import secure_filename
 
 bp = Blueprint("admin", __name__, url_prefix="/admin")
 
@@ -42,9 +43,6 @@ def profile():
 def get_user(id):
     user = User.query.get_or_404(id) # Query to user table
     return user
-
-
-from werkzeug.utils import secure_filename
 
 def get_profile_photo(id):
     user = User.query.get_or_404(id)
@@ -86,17 +84,10 @@ def update_user(id):
 @bp.route("/products/")
 @login_required
 def products():
-    return render_template("modules/products/index.html")
+    # Database query
+    products = Product.query.filter(Product.created_by == g.user.id).all()
 
-from werkzeug.utils import secure_filename
-
-# def get_image(id):
-#     product = Product.query.get_or_404(id)
-#     image = ""
-#     if image != "":
-#         image = product.image
-
-#     return image
+    return render_template("modules/products/index.html", products = products)
 
 # New product
 @bp.route("/products/new/", methods=("GET", "POST"))

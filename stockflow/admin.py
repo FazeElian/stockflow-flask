@@ -100,7 +100,7 @@ def new_product():
     if request.method == "POST":
         name = request.form["name"]
         code = request.form["code"]
-        category = request.form["category"]
+        category_id = request.form["category"]
         price = request.form["price"]
 
         if "image" in request.files and request.files["image"]:
@@ -111,7 +111,7 @@ def new_product():
             image = f"media/product/{filename}"  # Guarda la URL en la variable
 
         # Crea el nuevo producto
-        product = Product(g.user.id, name, code, category, price, image)
+        product = Product(g.user.id, name, code, category_id, price, image)
 
         # Agrega el producto a la base de datos
         db.session.add(product)

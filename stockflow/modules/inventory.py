@@ -85,3 +85,15 @@ def update(id):
         return redirect(url_for("admin/inventories.index"))
 
     return render_template("modules/inventories/edit.html", inventory = inventory)
+
+# Delete inventory
+@bp.route("/delete/<int:id>")
+@login_required
+def delete(id):
+    inventory = get_inventory(id)
+
+    db.session.delete(inventory)
+    db.session.commit()
+
+    # Redirection
+    return redirect(url_for("admin/inventories.index"))

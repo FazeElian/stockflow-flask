@@ -77,7 +77,10 @@ def update(id):
     inventory = get_inventory(id)
 
     if request.method == "POST":
-        inventory.inflows = request.form["inflows"]
+        inventory.inflows = int(request.form["inflows"])
+
+        # Update stock
+        inventory.stock = inventory.inflows - inventory.outflows
 
         db.session.commit()
 

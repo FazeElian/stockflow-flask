@@ -52,10 +52,26 @@
             font-weight: 450;
         }
 
-        .td svg {
-            width: 18px;
-            height: 18px;
-        }
+            .td input,
+            .td select {
+                display: flex;
+                width: 100%;
+                font-size: 16px;
+                font-weight: 500;
+                background: transparent;
+                border: none;
+                outline: none;
+                text-align: center;
+            }
+
+            .td select {
+                cursor: pointer;
+            }
+
+            .td svg {
+                width: 18px;
+                height: 18px;
+            }
 
 /* Responsive 1440px */
 @media screen and (max-width: 1440px) {

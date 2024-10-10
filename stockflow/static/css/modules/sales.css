@@ -19,11 +19,38 @@
     width: 26%;
 }
 
+.th-product-sale,
+.td-product-sale {
+    width: 35%;
+}
+
+.th-quantity-sale,
+.td-quantity-sale {
+    width: 20%;
+}
+
+.th-price-sale,
+.td-price-sale {
+    width: 25%;
+}
+
+.th-delete-sale,
+.td-delete-sale {
+    width: 20%;
+}
+
+    .td-delete-sale button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
     .td-options-sale {
         gap: 1.5rem;
     }
 
-    .td-options-sale a:hover {
+    .td-options-sale a:hover,
+    .td-delete-sale button:hover {
         opacity: .6;
         transition: .3s ease all;
     }

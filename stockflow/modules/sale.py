@@ -12,3 +12,9 @@ bp = Blueprint("admin/sales", __name__, url_prefix="/admin/sales")
 @login_required
 def index():
     return render_template("modules/sales/index.html")
+
+# New sale
+@bp.route("/new/")
+@login_required
+def new():
+    return render_template("modules/sales/new.html")

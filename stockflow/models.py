@@ -88,7 +88,8 @@ class Inventory(db.Model):
 
     # Get user data -> representation
     def __repr__(self):
-        return f"{self.name}"
+        return f"{self.id}"
+    
 class Customer(db.Model):
     # Table columns
     id = db.Column(db.Integer, primary_key = True) # Primary key
@@ -105,3 +106,39 @@ class Customer(db.Model):
     # Get user data -> representation
     def __repr__(self):
         return f"{self.id}"
+    
+class Sale(db.Model):
+    # Table columns
+    id = db.Column(db.Integer, primary_key = True) # Primary key
+    created_by = db.Column(db.Integer, db.ForeignKey("user.id"), nullable = False) # Foreign key
+    customer_id = db.Column(db.Integer, db.ForeignKey("customer.id"), nullable = False) # Foreign key
+    total = db.Column(db.Float, nullable=False)
+
+    # Relationship with Customer
+    customer = db.relationship('Customer', backref='sale', lazy=True)
+
+    # Create the object -> constructor
+    def __init__(self, created_by, customer_id, total):
+        self.created_by = created_by
+        self.customer_id = customer_id
+        self.total = float(total)
+
+    # Get user data -> representation
+    def __repr__(self):
+        return f"{self.id}"
+    
+class SaleItem(db.Model):
+    __tablename__ = 'sale_item'
+
+    id = db.Column(db.Integer, primary_key=True)
+    created_by = db.Column(db.Integer, db.ForeignKey("user.id"), nullable = False) # Foreign key
+    sale_id = db.Column(db.Integer, db.ForeignKey('sale.id'), nullable=False) # Foreign key
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False) # Foreign key
+    quantity = db.Column(db.Integer, nullable=False)
+    price = db.Column(db.Float, nullable=False)
+    
+    # Relationship with Customer
+    product = db.relationship('Product', backref='sale_item', lazy=True)
+
+    def __repr__(self):
+        return f'{self.id}{self.sale_id}{self.product_id}>'

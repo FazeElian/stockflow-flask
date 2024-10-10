@@ -1,0 +1,43 @@
+{% extends 'base-admin.html' %}
+    {% block title %}Editar Cliente{% endblock %}
+{% block content %}
+    <div class="content-group inter bg-black-light">
+        <h2 class="color-white inter">Editar Cliente</h2>
+    </div>
+    <form action="" method="post" class="form inter form-prods">
+        <div class="content-group bg-black-light form-content">
+            <h1>Información de Cliente:</h1>
+            <div class="form-group" style="margin-top: 0;">
+                <label for="name">Nombre:</label>
+                <input 
+                    type="text"
+                    class="inter color-white"
+                    name="name"
+                    value="{{ customer.name }}"
+                    id="name"
+                    placeholder="Ingresa aquí nombre de cliente"
+                    required
+                >
+            </div>
+            <div class="form-group">
+                <label for="name">Descripción:</label>
+                <input
+                    class="inter color-white"
+                    name="description"
+                    value="{{ customer.description }}"
+                    id="description"
+                    placeholder="Describe el nuevo cliente aquí"
+                >
+            </div>
+        </div>
+        <div class="btns-form inter">
+            <a href="{{ url_for('admin/customers.index') }}" class="btn-form color-white btn-cancel">
+                Cancelar
+            </a>
+            <button class="btn-form color-black btn-submit bg-turquese-light-blue inter" type="submit">
+                <img src="{{ url_for('static', filename='img/icons/update.png') }}" alt="">
+                Actualizar Categoría
+            </button>
+        </div>
+    </form>
+{% endblock %}

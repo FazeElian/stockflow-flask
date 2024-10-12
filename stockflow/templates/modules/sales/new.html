@@ -9,7 +9,24 @@
         <h2 class="color-white inter">Registrar Venta</h2>
     </div>
     <form action="" method="post">
-        <table class="table inter bg-black-light" id="productsList">
+        <div class="content-group form inter bg-black-light">
+            <div class="form-group" style="margin: 12px;">
+                <label for="name">Cliente:</label>
+                <select name="customer" id="customers" class="inter color-white" required>
+                    <option value="default" class="bg-black">Seleccionar Cliente</option>
+                    {% for customer in customers %}
+                        {% if customer %}
+                            <option value="{{ customer.id }}" class="bg-black">{{ customer.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group custom-date-icon" style="margin: 12px;">
+                <label for="name">Fecha de Compra:</label>
+                <input type="date" class="color-white inter" name="date" id="date" required>
+            </div>
+        </div>
+        <table class="table inter bg-black-light" id="productsTable">
             <thead>
                 <tr class="thead color-white-gray">
                     <th class="th th-product-sale">Producto</th>
@@ -18,54 +35,139 @@
                     <th class="th th-delete-sale">Opciones</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr class="tbody">
-                    <td class="td td-product-sale">
-                        <select name="product" id="" class="color-white inter" style="width: 80%;">
-                            <option value="default" class="bg-black">Seleccionar Producto</option>
-                        </select>
-                    </td>
-                    <td class="td td-quantity-sale">
-                        <input type="number" class="inter color-white" name="quantity" id="" placeholder="#">
-                    </td>
-                    <td class="td td-price-sale">
-                        <input type="text" name="" id="" value="4000 $" class="inter color-gray" disabled>
-                    </td>
-                    <td class="td td-delete-sale">
-                        <button type="button" onclick="removeRow(this)">
-                            <svg 
-                                xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink"
-                                viewBox="0,0,256,256"
-                                fill-rule="nonzero"
-                            >
-                                <g transform="translate(-32,-32) scale(1.25,1.25)">
-                                    <g 
-                                        fill="#fc003c"
-                                        fill-rule="nonzero"
-                                        stroke="none"
-                                        stroke-width="1"
-                                        stroke-linecap="butt"
-                                        stroke-linejoin="miter"
-                                        stroke-miterlimit="10"
-                                        stroke-dasharray=""
-                                        stroke-dashoffset="0"
-                                        font-family="none"
-                                        font-weight="none"
-                                        font-size="none"
-                                        text-anchor="none"
-                                        style="mix-blend-mode: normal"
-                                    >
-                                        <g transform="translate(0,6.45885) scale(8.53333,8.53333)">
-                                            <path d="M14.98438,2.48633c-0.55152,0.00862 -0.99193,0.46214 -0.98437,1.01367v0.5h-5.5c-0.26757,-0.00363 -0.52543,0.10012 -0.71593,0.28805c-0.1905,0.18793 -0.29774,0.44436 -0.29774,0.71195h-1.48633c-0.36064,-0.0051 -0.69608,0.18438 -0.87789,0.49587c-0.18181,0.3115 -0.18181,0.69676 0,1.00825c0.18181,0.3115 0.51725,0.50097 0.87789,0.49587h18c0.36064,0.0051 0.69608,-0.18438 0.87789,-0.49587c0.18181,-0.3115 0.18181,-0.69676 0,-1.00825c-0.18181,-0.3115 -0.51725,-0.50097 -0.87789,-0.49587h-1.48633c0,-0.26759 -0.10724,-0.52403 -0.29774,-0.71195c-0.1905,-0.18793 -0.44836,-0.29168 -0.71593,-0.28805h-5.5v-0.5c0.0037,-0.2703 -0.10218,-0.53059 -0.29351,-0.72155c-0.19133,-0.19097 -0.45182,-0.29634 -0.72212,-0.29212zM6,9l1.79297,15.23438c0.118,1.007 0.97037,1.76563 1.98438,1.76563h10.44531c1.014,0 1.86538,-0.75862 1.98438,-1.76562l1.79297,-15.23437z"></path>
-                                        </g>
+            <tbody></tbody>
+        </table>
+        <div class="btns-form inter" style="justify-content: flex-end;">
+            <button class="btn-form color-black btn-submit bg-blue inter" type="button" onclick="addRow()">
+                <img src="{{ url_for('static', filename='img/icons/add-product.png') }}" alt="">
+                Añadir Producto
+            </button>
+        </div>
+        <br>
+        <div class="btns-form inter">
+            <a href="{{ url_for('admin/sales.index') }}" class="btn-form color-white btn-cancel">
+                Cancelar
+            </a>
+            <button class="btn-form color-black btn-submit bg-turquese-light-blue inter" type="submit">
+                <img src="{{ url_for('static', filename='img/icons/register-sale.png') }}" alt="">
+                Registrar Venta
+            </button>
+        </div>
+    </form>
+    <script>
+        // Attach an event listener to the custom date icon
+        document.querySelector('.custom-date-icon').addEventListener('click', function() {
+            document.getElementById('date').showPicker(); // Opens the date picker
+        });
+    
+        function addRow() {
+            // Get the products table
+            const table = document.getElementById("productsTable").getElementsByTagName("tbody")[0];
+        
+            // Create a new row
+            const newRow = table.insertRow();
+        
+            // Add class to the new row
+            newRow.classList.add("tbody");
+        
+            // Create the cells for the new row
+            const productCell = newRow.insertCell(0); // Insert cell at index 0
+            const quantityCell = newRow.insertCell(1);
+            const priceCell = newRow.insertCell(2);
+            const deleteCell = newRow.insertCell(3);
+        
+            // Product select cell
+            productCell.innerHTML = `
+                <select name="products" class="color-white inter product-select" style="width: 80%;" required>
+                    <option value="default" class="bg-black">Seleccionar Producto</option>
+                    {% for product in products %}
+                        <option value="{{ product.id }}" class="bg-black" data-price="{{ product.price }}">{{ product.name }}</option>
+                    {% endfor %}
+                </select>
+            `;
+            productCell.className = "td td-product-sale";
+        
+            // Attach event listener to update product options and price
+            const productSelect = productCell.querySelector('.product-select');
+            productSelect.addEventListener('change', updateProductOptions);
+            productSelect.addEventListener('change', updatePrice); // Call updatePrice on product change
+        
+            // Quantity input cell
+            quantityCell.innerHTML = `
+                <input type="number" class="inter color-white" name="quantity" value=1 placeholder="#" required>
+            `;
+            quantityCell.className = "td td-quantity-sale";
+        
+            // Price display cell with default value
+            priceCell.innerHTML = `
+                <input type="text" class="inter color-gray product-price" id="product-price" value="Seleccione un producto" disabled>
+            `;
+            priceCell.className = "td td-price-sale"; // Set a default value of "$0.00" for the price display
+        
+            // Delete button cell
+            deleteCell.innerHTML = `
+                <td class="td td-delete-sale">
+                    <button type="button" onclick="removeRow(this)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill-rule="nonzero">
+                            <g transform="translate(-32,-32) scale(1.25,1.25)">
+                                <g fill="#fc003c" fill-rule="nonzero">
+                                    <g transform="translate(0,6.45885) scale(8.53333,8.53333)">
+                                        <path d="M14.98438,2.48633c-0.55152,0.00862 -0.99193,0.46214 -0.98437,1.01367v0.5h-5.5c-0.26757,-0.00363 -0.52543,0.10012 -0.71593,0.28805c-0.1905,0.18793 -0.29774,0.44436 -0.29774,0.71195h-1.48633c-0.36064,-0.0051 -0.69608,0.18438 -0.87789,0.49587c-0.18181,0.3115 -0.18181,0.69676 0,1.00825c0.18181,0.3115 0.51725,0.50097 0.87789,0.49587h18c0.36064,0.0051 0.69608,-0.18438 0.87789,-0.49587c0.18181,-0.3115 0.18181,-0.69676 0,-1.00825c-0.18181,-0.3115 -0.51725,-0.50097 -0.87789,-0.49587h-1.48633c0,-0.26759 -0.10724,-0.52403 -0.29774,-0.71195c-0.1905,-0.18793 -0.44836,-0.29168 -0.71593,-0.28805h-5.5v-0.5c0.0037,-0.2703 -0.10218,-0.53059 -0.29351,-0.72155c-0.19133,-0.19097 -0.45182,-0.29634 -0.72212,-0.29212zM6,9l1.79297,15.23438c0.118,1.007 0.97037,1.76563 1.98438,1.76563h10.44531c1.014,0 1.86538,-0.75862 1.98438,-1.76562l1.79297,-15.23437z"></path>
                                     </g>
                                 </g>
-                            </svg>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </form>
+                            </g>
+                        </svg>
+                    </button>
+                </td>
+            `;
+            deleteCell.className = "td td-delete-sale";
+        
+            // Call updateProductOptions to disable selected options on newly added rows
+            updateProductOptions();
+        }        
+        
+        function removeRow(button) {
+            // Get the row to be deleted
+            const row = button.closest("tr");
+            row.remove();
+        
+            // Update the product options after removing a row
+            updateProductOptions();
+        }
+        
+        function updateProductOptions() {
+            const allSelects = document.querySelectorAll('.product-select');
+            
+            // Get all selected product IDs except the default option
+            const selectedProducts = Array.from(allSelects)
+                .map(select => select.value)
+                .filter(value => value !== 'default'); // Get only selected products, excluding default
+        
+            allSelects.forEach(select => {
+                Array.from(select.options).forEach(option => {
+                    if (selectedProducts.includes(option.value) && option.value !== select.value) {
+                        option.disabled = true; // Disable already selected products in other selects
+                    } else {
+                        option.disabled = false; // Enable products that are not selected
+                    }
+                });
+            });
+        }
+        
+        function updatePrice(event) {
+            // Get the select element that triggered the event
+            const productSelect = event.target;
+        
+            // Get the price input field in the same row
+            const priceDisplay = productSelect.closest("tr").querySelector(".product-price");
+        
+            // Get the selected product's price from the data-price attribute
+            const selectedOption = productSelect.options[productSelect.selectedIndex];
+            const price = selectedOption.getAttribute('data-price');
+        
+            // Update the price display with "$" symbol
+            priceDisplay.value = price ? `${price} $` : ''; // Add "$" and format to 2 decimals
+        }        
+    </script>
+         
 {% endblock %}

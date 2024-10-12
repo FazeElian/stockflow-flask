@@ -45,6 +45,37 @@
         appearance: none;
     }
 
+        .form-group input[type="date"]::-webkit-calendar-picker-indicator {
+            display: none;
+            -webkit-appearance: none;
+        }
+    
+        .form-group input[type="date"]::-moz-clear {
+            display: none;
+        }
+    
+        .form-group input[type="date"]::-ms-clear {
+            display: none;
+        }
+
+        .custom-date-icon {
+            display: flex;
+            position: relative;
+            justify-content: center;
+        }
+      
+        /* Añadir un ícono con color blanco */
+        .custom-date-icon:after {
+            content: '\1F4C5'; /* Unicode de un ícono de calendario */
+            color: white; /* Cambia el color del ícono a blanco */
+            position: absolute;
+            right: 10px;
+            top: 70%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            font-size: 16px; /* Ajusta el tamaño del ícono */
+        }
+
         .form-group textarea {
             height: auto;
             min-height: 80px;

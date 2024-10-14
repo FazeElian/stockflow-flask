@@ -83,3 +83,24 @@ def new():
         return redirect(url_for("admin/sales.index"))
 
     return render_template("modules/sales/new.html", products = products, customers = customers)
+
+# Get sale by id
+def get_sale(id):
+    sale = Sale.query.get_or_404(id)
+    return sale
+
+# Delete sale
+@bp.route("/delete/<int:id>")
+@login_required
+def delete(id):
+    sale = get_sale(id)
+    
+    # Eliminar los elementos de venta relacionados (SaleItem)
+    SaleItem.query.filter_by(sale_id=sale.id).delete()
+    
+    # Eliminar la venta
+    db.session.delete(sale)
+    db.session.commit()
+
+    # Redirección a la lista de ventas
+    return redirect(url_for("admin/sales.index"))

@@ -11,7 +11,8 @@ def create_app():
     app.config.from_mapping (
         DEBUG = True,
         SECRET_KEY = "dev",
-        SQLALCHEMY_DATABASE_URI="sqlite:///stockflow.db"
+        SQLALCHEMY_DATABASE_URI="mysql+pymysql://root@localhost/db_stockflow",
+        SQLALCHEMY_TRACK_MODIFICATIONS=False
     )
 
     # Initialize the database connection

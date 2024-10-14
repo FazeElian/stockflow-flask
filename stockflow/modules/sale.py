@@ -21,7 +21,9 @@ from stockflow.models import Sale, Product, SaleItem, Customer
 @bp.route("/")
 @login_required
 def index():
-    return render_template("modules/sales/index.html")
+    sales = Sale.query.filter(Sale.created_by == g.user.id).all()
+
+    return render_template("modules/sales/index.html", sales = sales)
 
 # New sale
 @bp.route("/new/", methods=("GET", "POST"))
@@ -38,6 +40,7 @@ def new():
         sale = Sale(
             created_by = g.user.id,
             customer_id = request.form["customer"],
+            date = request.form["date"],
             total = 0
         )
     

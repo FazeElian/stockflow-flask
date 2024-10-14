@@ -112,15 +112,17 @@ class Sale(db.Model):
     id = db.Column(db.Integer, primary_key = True) # Primary key
     created_by = db.Column(db.Integer, db.ForeignKey("user.id"), nullable = False) # Foreign key
     customer_id = db.Column(db.Integer, db.ForeignKey("customer.id"), nullable = False) # Foreign key
+    date = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp())
     total = db.Column(db.Float, nullable=False)
 
     # Relationship with Customer
     customer = db.relationship('Customer', backref='sale', lazy=True)
 
     # Create the object -> constructor
-    def __init__(self, created_by, customer_id, total):
+    def __init__(self, created_by, customer_id, date, total):
         self.created_by = created_by
         self.customer_id = customer_id
+        self.date = date
         self.total = float(total)
 
     # Get user data -> representation

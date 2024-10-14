@@ -1,6 +1,12 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
+import os
+from dotenv import load_dotenv
+
+# Load the variables from .env file
+load_dotenv()
+
 # Database
 db = SQLAlchemy()
 
@@ -10,9 +16,9 @@ def create_app():
     # Config
     app.config.from_mapping (
         DEBUG = True,
-        SECRET_KEY = "dev",
-        SQLALCHEMY_DATABASE_URI="mysql+pymysql://root@localhost/db_stockflow",
-        SQLALCHEMY_TRACK_MODIFICATIONS=False
+        SECRET_KEY = os.getenv("SECRET_KEY"),
+        SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_DATABASE_URI"),
+        SQLALCHEMY_TRACK_MODIFICATIONS = False
     )
 
     # Initialize the database connection

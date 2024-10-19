@@ -111,7 +111,7 @@ class Sale(db.Model):
     # Table columns
     id = db.Column(db.Integer, primary_key = True) # Primary key
     created_by = db.Column(db.Integer, db.ForeignKey("user.id"), nullable = False) # Foreign key
-    customer_id = db.Column(db.Integer, db.ForeignKey("customer.id"), nullable = False) # Foreign key
+    customer_id = db.Column(db.Integer, db.ForeignKey("customer.id"), nullable = True) # Foreign key
     date = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp())
     total = db.Column(db.Float, nullable=False)
 

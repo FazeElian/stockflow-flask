@@ -33,13 +33,18 @@ def new():
     products = Product.query.filter(Product.created_by == g.user.id).all()
 
     # Obtener todos los clientes
-    customers = Customer.query.filter(Product.created_by == g.user.id).all()
+    customers = Customer.query.filter(Customer.created_by == g.user.id).all()
 
     if request.method == "POST":
+        customer_id = request.form["customer"]
+
+        if customer_id == "default" or not customer_id:
+            customer_id = None
+
         # Create the new sale without products
         sale = Sale(
             created_by = g.user.id,
-            customer_id = request.form["customer"],
+            customer_id=customer_id,
             date = request.form["date"],
             total = 0
         )

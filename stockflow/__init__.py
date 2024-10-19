@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 import os
 from dotenv import load_dotenv
@@ -23,6 +24,9 @@ def create_app():
 
     # Initialize the database connection
     db.init_app(app)
+
+    # Initialize Flask-Migrate
+    migrate = Migrate(app, db)
 
     # Index
     @app.route("/")

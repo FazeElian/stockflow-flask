@@ -73,6 +73,18 @@
                 height: 18px;
             }
 
+        .tfoot {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            border-bottom: 1px solid #87888C;
+            justify-content: space-between;
+        }
+
+            .tfoot td {
+                font-size: 17px;
+            }
+
 /* Responsive 1440px */
 @media screen and (max-width: 1440px) {
     .table {
@@ -80,7 +92,7 @@
         padding: 0 2rem 1.5rem;
     }
 
-    .th {
+    .th, .tfoot td {
         font-size: 16px;
     }
 

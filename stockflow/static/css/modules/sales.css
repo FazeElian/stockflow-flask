@@ -39,6 +39,10 @@
     width: 20%;
 }
 
+.td-final-total-sale {
+    width: 25%;
+}
+
     .td-delete-sale button {
         background: transparent;
         border: none;

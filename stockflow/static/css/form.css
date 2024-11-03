@@ -125,9 +125,24 @@
             transition: .3s ease all;
         }
 
+        .btn-come-back {
+            background-color: #20AEF3;
+        }
+
+            .btn-come-back img {
+                width: 22px;
+                height: 22px;
+            }
+
         .btn-cancel {
             background-color: #FC003C;
         }
+
+            .btn-cancel svg {
+                width: 18px;
+                height: 18px;
+                margin-left: 8px;
+            }
 
 /* Responsive 1440px */
 @media screen and (max-width: 1440px) {

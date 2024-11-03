@@ -40,6 +40,30 @@
                     <td class="td td-date-sale">{{ sale.date.strftime('%d / %m / %Y') }}</td>
                     <td class="td td-total-sale">{{ sale.total }} $</td>
                     <td class="td td-options-sale">
+                        <a href="{{ url_for('admin/sales.view', id = sale.id) }}">
+                            <svg
+                                version="1.0" 
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="100.000000pt" height="100.000000pt"
+                                viewBox="0 0 100.000000 100.000000"
+                                preserveAspectRatio="xMidYMid meet"
+                            >
+                                <g 
+                                    transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)"
+                                    fill="#1FF267"
+                                    stroke="none"
+                                >
+                                    <path d="M410 859 c-138 -22 -295 -141 -375 -283 -44 -80 -43 -87 25 -190 197
+                                    -294 560 -338 799 -97 64 65 141 180 141 211 0 31 -77 146 -141 211 -78 79
+                                    -181 133 -279 149 -74 11 -93 11 -170 -1z m209 -166 c27 -17 58 -48 76 -77 25
+                                    -42 30 -59 30 -116 0 -57 -5 -74 -30 -116 -19 -30 -49 -60 -79 -79 -71 -43
+                                    -161 -43 -232 0 -30 19 -60 49 -79 79 -25 42 -30 59 -30 115 0 54 5 75 28 113
+                                    66 113 205 149 316 81z"/>
+                                    <path d="M462 633 c-13 -2 -38 -19 -56 -38 -57 -56 -57 -133 -1 -190 56 -56
+                                    134 -56 190 0 99 99 7 257 -133 228z"/>
+                                </g>
+                            </svg>
+                        </a>
                         <a href="#">
                             <svg 
                                 xmlns="http://www.w3.org/2000/svg"

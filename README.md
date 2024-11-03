@@ -1,3 +1,6 @@
+<br>
+<br>
+
 <div align="center">
   <img align="center" width="35.5%" src="./stockflow/static/img/full-logo.png" alt="Logo" />
 </div>

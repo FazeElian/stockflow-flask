@@ -8,6 +8,7 @@ from flask import (
 
 from stockflow.auth import login_required
 from werkzeug.utils import secure_filename
+import os
 
 bp = Blueprint("admin", __name__, url_prefix="/admin")
 
@@ -57,12 +58,23 @@ def update_user(id):
         user.username = request.form["username"]
         user.email = request.form["email"]
 
-        if request.files["profile_photo"]:
+        if "profile_photo" in request.files:
             profile_photo = request.files["profile_photo"]
             
+            # Route to save photo
+            upload_folder = "stockflow/static/media/user"
+
+            # Check if it already exists
+            if not os.path.exists(upload_folder):
+                os.makedirs(upload_folder)
+
             # Save photo on a static project folder
-            profile_photo.save(f"stockflow/static/media/user/{secure_filename(profile_photo.filename)}") # Get file name
-            user.profile_photo = f"media/user/{secure_filename(profile_photo.filename)}"; # Save on db
+            filename = secure_filename(profile_photo.filename)
+            profile_photo_path = os.path.join(upload_folder, filename)
+            profile_photo.save(profile_photo_path)
+
+            # Save the relative path to the database
+            user.profile_photo = f"media/user/{filename}"
 
         db.session.commit()
 

@@ -1,7 +1,141 @@
 {% extends 'base-admin.html' %}
 {% block title %}Dashboard{% endblock %}
 {% block content %}
+    <head>
+        <!-- Styles for this view -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/modules/dashboard.css') }}">
+
+        <!-- Scripts for this view -->
+        <script src="{{ url_for('static', filename='js/modules/dashboard.js') }}"></script>
+    </head>
     <div class="content-group inter bg-black-light">
         <h2 class="color-white inter">Dashboard</h2>
     </div>
+
+    <!-- Top -->
+    <section class="top-dashboard inter">
+        <div class="item-top-dashboard">
+            <div class="title-item-top-dashboard">
+                Ventas Totales
+                <img src="{{ url_for('static', filename='img/icons/money.png') }}" alt="">
+            </div>
+            <h3 id="count" data-target="421570"></h3>
+            <h4 class="color-gray">+10% que el mes pasado</h4>
+        </div>
+        <div class="item-top-dashboard">
+            <div class="title-item-top-dashboard">
+                Total de Compras
+                <img src="{{ url_for('static', filename='img/icons/sales.png') }}" alt="">
+            </div>
+            <h3 id="count2" data-target="300"></h3>
+            <h4 class="color-gray">+15% que el mes pasado</h4>
+        </div>
+        <div class="item-top-dashboard">
+            <div class="title-item-top-dashboard">
+                Valor Promedio Compra
+                <img src="{{ url_for('static', filename='img/icons/average-money.png') }}" alt="">
+            </div>
+            <h3 id="count" data-target="12000"></h3>
+            <h4 class="color-gray">+10% que el mes pasado</h4>
+        </div>
+        <div class="item-top-dashboard top-sale-product">
+            <div class="title-item-top-dashboard">
+                Producto más Vendido
+                <img src="{{ url_for('static', filename='img/icons/best-seller.png') }}" alt="">
+            </div>
+            <h3>Cuaderno Norma</h3>
+            <h4 class="color-gray">20 unidades vendidas este mes</h4>
+        </div>
+    </section>
+
+    <!-- Table -->
+    <section class="table-weekly-sales content-group bg-black-light inter bg-black">
+        <h1>Ventas de esta Semana:</h1>
+
+        <table class="table inter bg-black" style="margin-top: 1.5rem;">
+            <thead>
+                <tr class="thead color-white-gray">
+                    <th class="th th-no-dashboard">No</th>
+                    <th class="th th-date-dashboard">Fecha</th>
+                    <th class="th th-total-dashboard">Total</th>
+                    <th class="th th-options-dashboard">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="tbody">
+                    <td class="td td-no-dashboard">1</td>
+                    <td class="td td-date-dashboard">01 / 01 / 2024</td>
+                    <td class="td td-total-dashboard">10000 $</td>
+                    <td class="td td-options-dashboard">
+                        <a href="#">
+                            <svg
+                                version="1.0"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="100.000000pt" height="100.000000pt"
+                                viewBox="0 0 100.000000 100.000000"
+                                preserveAspectRatio="xMidYMid meet"
+                            >
+                                <g
+                                    transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)"
+                                    fill="#1FF267"
+                                    stroke="none"
+                                >
+                                    <path d="M410 859 c-138 -22 -295 -141 -375 -283 -44 -80 -43 -87 25 -190 197
+                                    -294 560 -338 799 -97 64 65 141 180 141 211 0 31 -77 146 -141 211 -78 79
+                                    -181 133 -279 149 -74 11 -93 11 -170 -1z m209 -166 c27 -17 58 -48 76 -77 25
+                                    -42 30 -59 30 -116 0 -57 -5 -74 -30 -116 -19 -30 -49 -60 -79 -79 -71 -43
+                                    -161 -43 -232 0 -30 19 -60 49 -79 79 -25 42 -30 59 -30 115 0 54 5 75 28 113
+                                    66 113 205 149 316 81z"/>
+                                    <path d="M462 633 c-13 -2 -38 -19 -56 -38 -57 -56 -57 -133 -1 -190 56 -56
+                                    134 -56 190 0 99 99 7 257 -133 228z"/>
+                                </g>
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 16 16"
+                                fill="#20AEF3"
+                            >
+                                <path
+                                    d="M12.527 7.473L8.527 3.473 1 11 1 15 5 15zM11.172.828l-1.065 1.065 4 4 1.065-1.065c1.105-1.105 1.105-2.895 0-4l0 0C14.067-.276 12.276-.276 11.172.828z"
+                                />
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                viewBox="0,0,256,256"
+                                fill-rule="nonzero"
+                            >
+                                <g transform="translate(-32,-32) scale(1.25,1.25)">
+                                    <g
+                                        fill="#fc003c"
+                                        fill-rule="nonzero"
+                                        stroke="none"
+                                        stroke-width="1"
+                                        stroke-linecap="butt"
+                                        stroke-linejoin="miter"
+                                        stroke-miterlimit="10"
+                                        stroke-dasharray=""
+                                        stroke-dashoffset="0"
+                                        font-family="none"
+                                        font-weight="none"
+                                        font-size="none"
+                                        text-anchor="none"
+                                        style="mix-blend-mode: normal"
+                                    >
+                                        <g transform="translate(0,6.45885) scale(8.53333,8.53333)">
+                                            <path d="M14.98438,2.48633c-0.55152,0.00862 -0.99193,0.46214 -0.98437,1.01367v0.5h-5.5c-0.26757,-0.00363 -0.52543,0.10012 -0.71593,0.28805c-0.1905,0.18793 -0.29774,0.44436 -0.29774,0.71195h-1.48633c-0.36064,-0.0051 -0.69608,0.18438 -0.87789,0.49587c-0.18181,0.3115 -0.18181,0.69676 0,1.00825c0.18181,0.3115 0.51725,0.50097 0.87789,0.49587h18c0.36064,0.0051 0.69608,-0.18438 0.87789,-0.49587c0.18181,-0.3115 0.18181,-0.69676 0,-1.00825c-0.18181,-0.3115 -0.51725,-0.50097 -0.87789,-0.49587h-1.48633c0,-0.26759 -0.10724,-0.52403 -0.29774,-0.71195c-0.1905,-0.18793 -0.44836,-0.29168 -0.71593,-0.28805h-5.5v-0.5c0.0037,-0.2703 -0.10218,-0.53059 -0.29351,-0.72155c-0.19133,-0.19097 -0.45182,-0.29634 -0.72212,-0.29212zM6,9l1.79297,15.23438c0.118,1.007 0.97037,1.76563 1.98438,1.76563h10.44531c1.014,0 1.86538,-0.75862 1.98438,-1.76562l1.79297,-15.23437z"></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 {% endblock %}

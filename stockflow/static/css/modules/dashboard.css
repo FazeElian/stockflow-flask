@@ -1,0 +1,154 @@
+/* Top */
+.top-dashboard {
+    display: flex;
+    width: 100%;
+    height: auto;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+    .item-top-dashboard {
+        display: flex;
+        width: 24%;
+        height: auto;
+        padding: 2rem;
+        background-color: #363740;
+        border-radius: .6rem;
+        flex-direction: column;
+    }
+
+        .item-top-dashboard h3 {
+            margin-top: 10px;
+            font-size: 35px;
+            font-weight: 500;
+        }
+
+        .item-top-dashboard h4 {
+            margin-top: 5px;
+            font-size: 15px;
+        }
+
+        .title-item-top-dashboard {
+            display: flex;
+            width: 100%;
+            height: auto;
+            font-size: 20px;
+            font-weight: 600;
+            justify-content: space-between;
+        }
+
+            .title-item-top-dashboard img {
+                width: 24px;
+                height: 24px;
+            }
+
+        .top-sale-product h3{
+            background: linear-gradient(
+                to right, 
+                #FED718 100%, 
+                #FED718 100%
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: changeColor 5s infinite;
+            font-size: 27px;
+        }
+
+/* Weekly sales */
+.table-weekly-sales {
+    display: flex;
+    width: 100%;
+    height: auto;
+    padding: 2.5rem 2.5rem 0;
+    margin-top: 1.5rem;
+    flex-direction: column;
+}
+
+    .table-weekly-sales h1 {
+        font-size: 26px;
+        font-weight: 600;
+    }
+
+/* Table */
+.th-no-dashboard,
+.td-no-dashboard {
+    width: 12%;
+}
+
+.th-date-dashboard,
+.td-date-dashboard {
+    width: 36%;
+}
+
+.th-total-dashboard,
+.td-total-dashboard {
+    width: 22%;
+}
+
+.th-options-dashboard,
+.td-options-dashboard {
+    width: 30%;
+}
+
+    .td-options-dashboard {
+        gap: 1.5rem;
+    }
+
+    .td-options-dashboard a:hover {
+        opacity: .6;
+        transition: .3s ease all;
+    }
+
+/* Responsive 1440px */
+@media screen and (max-width: 1440px) {
+    .top-dashboard {
+        justify-content: space-between;
+    }
+
+    .item-top-dashboard {
+        padding: 1.7rem;
+        width: 48.5%;
+    }
+
+    .item-top-dashboard h3 {
+        font-size: 28px;
+    }
+
+    .item-top-dashboard h4 {
+        font-size: 12px;
+    }
+
+    .title-item-top-dashboard {
+        font-size: 16px;
+    }
+
+    .top-sale-product h3 {
+        font-size: 22px;
+    }
+}
+
+/* Responsive 1024px */
+@media screen and (max-width: 1024px) {
+    .item-top-dashboard {
+        width: 48.2%;
+    }
+}
+
+/* Responsive 600px */
+@media screen and (max-width: 600px) {
+    .item-top-dashboard {
+        width: 100%;
+    }
+}
+
+/* Gradient text animation */
+@keyframes changeColor {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}

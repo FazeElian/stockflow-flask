@@ -16,7 +16,7 @@ def create_app():
 
     # Config
     app.config.from_mapping (
-        DEBUG = False,
+        DEBUG = os.getenv("DEBUG_MODE"),
         SECRET_KEY = os.getenv("SECRET_KEY"),
         SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_DATABASE_URI"),
         SQLALCHEMY_TRACK_MODIFICATIONS = False

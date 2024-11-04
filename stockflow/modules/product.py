@@ -9,6 +9,7 @@ from flask import (
 
 from stockflow.auth import login_required
 from werkzeug.utils import secure_filename
+import os
 
 bp = Blueprint("admin/products", __name__, url_prefix="/admin/products")
 
@@ -48,7 +49,6 @@ def index():
 def new():
     # Get all the categories that user created
     categories = Category.query.filter(Category.created_by == g.user.id).all()
-    image = None
 
     if request.method == "POST":
         name = request.form["name"]
@@ -56,12 +56,23 @@ def new():
         category_id = request.form["category"]
         price = request.form["price"]
 
-        if "image" in request.files and request.files["image"]:
-            uploaded_image = request.files["image"]
+        if "image" in request.files:
+            image = request.files["image"]
             
-            filename = secure_filename(uploaded_image.filename)
-            uploaded_image.save(f"stockflow/static/media/product/{filename}")  # Save the file
-            image = f"media/product/{filename}"  # Save the route of the file
+            # Route to save image
+            upload_folder = "stockflow/static/media/product"
+
+            # Check if it already exists
+            if not os.path.exists(upload_folder):
+                os.makedirs(upload_folder)
+
+            # Save photo on a static project folder
+            filename = secure_filename(image.filename)
+            image_path = os.path.join(upload_folder, filename)
+            image.save(image_path)
+
+            # Save the relative path to the database
+            image = f"media/product/{filename}"
 
         # Create the new product
         product = Product(g.user.id, name, code, category_id, price, image)
@@ -104,13 +115,23 @@ def update(id):
         product.category_id = request.form["category"]
         product.price = request.form["price"]
 
-        if "image" in request.files and request.files["image"]:
-            uploaded_image = request.files["image"]
+        if "image" in request.files:
+            image = request.files["image"]
             
-            filename = secure_filename(uploaded_image.filename)
-            uploaded_image.save(f"stockflow/static/media/product/{filename}")  # Save the file
-            image = f"media/product/{filename}"  # Save the route of the file
+            # Route to save image
+            upload_folder = "stockflow/static/media/product"
 
+            # Check if it already exists
+            if not os.path.exists(upload_folder):
+                os.makedirs(upload_folder)
+
+            # Save photo on a static project folder
+            filename = secure_filename(image.filename)
+            image_path = os.path.join(upload_folder, filename)
+            image.save(image_path)
+
+            # Save the relative path to the database
+            product.image = f"media/product/{filename}"
 
         # Save changes
         db.session.commit()

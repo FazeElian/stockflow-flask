@@ -49,6 +49,7 @@ def index():
 def new():
     # Get all the categories that user created
     categories = Category.query.filter(Category.created_by == g.user.id).all()
+    image = None
 
     if request.method == "POST":
         name = request.form["name"]

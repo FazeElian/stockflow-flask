@@ -47,33 +47,32 @@ def index():
 @bp.route("/new/", methods=("GET", "POST"))
 @login_required
 def new():
-    # Get all the categories that user created
+    # Get all categories created by the user
     categories = Category.query.filter(Category.created_by == g.user.id).all()
     image = None
 
     if request.method == "POST":
+        # Get form data
         name = request.form["name"]
         code = request.form["code"]
         category_id = request.form["category"]
         price = request.form["price"]
 
+        # Check if an image was uploaded
         if "image" in request.files:
             image = request.files["image"]
-            
-            # Route to save image
-            upload_folder = "stockflow/static/media/product"
 
-            # Check if it already exists
+            # Define the upload folder
+            upload_folder = "stockflow/static/media/product"
+            # Check if the folder exists, if not, create it
             if not os.path.exists(upload_folder):
                 os.makedirs(upload_folder)
 
-            # Save photo on a static project folder
+            # Save the image with a secure filename
             filename = secure_filename(image.filename)
             image_path = os.path.join(upload_folder, filename)
-            image.save(image_path)
-
-            # Save the relative path to the database
-            image = f"media/product/{filename}"
+            image.save(image_path)  # Save the image file
+            image = f"media/product/{filename}"  # Save relative path to image
 
         # Create the new product
         product = Product(g.user.id, name, code, category_id, price, image)
@@ -82,7 +81,6 @@ def new():
         db.session.add(product)
         db.session.commit()
 
-        # Redirección
         return redirect(url_for("admin/products.index"))
 
     return render_template("modules/products/new.html", categories=categories, image=image)
@@ -101,46 +99,43 @@ def get_product_image(id):
     return product_img
 
 # Update product
-@bp.route("/edit/<int:id>", methods = ("GET", "POST"))
+@bp.route("/edit/<int:id>", methods=("GET", "POST"))
 @login_required
 def update(id):
+    # Get product by ID
     product = get_product(id)
-    image = get_product_image(id)
-
-    # Get all the categories that user created
+    # Get all categories created by the user
     categories = Category.query.filter(Category.created_by == g.user.id).all()
 
     if request.method == "POST":
+        # Update product details
         product.name = request.form["name"]
         product.code = request.form["code"]
         product.category_id = request.form["category"]
         product.price = request.form["price"]
 
+        # Check if a new image was uploaded
         if "image" in request.files:
             image = request.files["image"]
-            
-            # Route to save image
-            upload_folder = "stockflow/static/media/product"
 
-            # Check if it already exists
+            # Define the upload folder
+            upload_folder = "stockflow/static/media/product"
+            # Check if the folder exists, if not, create it
             if not os.path.exists(upload_folder):
                 os.makedirs(upload_folder)
 
-            # Save photo on a static project folder
+            # Save the image with a secure filename
             filename = secure_filename(image.filename)
             image_path = os.path.join(upload_folder, filename)
-            image.save(image_path)
+            image.save(image_path)  # Save the image file
+            product.image = f"media/product/{filename}"  # Update path in the database
 
-            # Save the relative path to the database
-            product.image = f"media/product/{filename}"
-
-        # Save changes
+        # Commit changes to the database
         db.session.commit()
 
-        # Redirection
         return redirect(url_for("admin/products.index"))
 
-    return render_template("modules/products/edit.html", product = product, categories = categories, image = image)
+    return render_template("modules/products/edit.html", product=product, categories=categories)
 
 # Delete product
 @bp.route("/delete/<int:id>")
